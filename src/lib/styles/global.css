@@ -1,0 +1,162 @@
+@import url(reset.css);
+@import url(color.css);
+@import url(typography.css);
+@import url(spacing.css);
+@import url(border-radius.css);
+
+body {
+	background-color: var(--background);
+}
+
+.g-pad {
+	padding: var(--space-s) var(--space-s);
+}
+
+html {
+	width: 750px;
+	color: var(--copy);
+
+	/* VERY IMPORTANT TO KEEP UI STABLE WHEN SCROLLBAR POPUP */
+	scrollbar-gutter: stable;
+}
+
+.btn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2xs);
+	line-height: 1;
+
+	position: relative;
+
+	transition: all 0.3s ease;
+
+	padding: var(--space-xs) var(--space-s);
+
+	/* text */
+	font-size: var(--step-1);
+	font-weight: 600;
+
+	border-radius: var(--border-radius-1);
+	border: 1px solid transparent;
+
+	cursor: pointer;
+
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	&:hover {
+		filter: brightness(105%);
+	}
+
+	&:active {
+		filter: brightness(90%);
+	}
+}
+
+.btn--small {
+	display: flex;
+	gap: var(--space-2xs);
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	padding: var(--space-3xs) var(--space-xs);
+
+	border: 1px solid transparent;
+	border-radius: var(--border-radius-1);
+
+	/* TYPOGRAPHY */
+	font-size: var(--step--1);
+	font-weight: 500;
+	line-height: 1;
+	/* --- */
+
+	transition: ease-in-out 0.3s;
+
+	cursor: pointer;
+	color: black;
+
+	&:hover {
+		filter: brightness(105%);
+	}
+
+	&:active {
+		filter: brightness(90%);
+	}
+}
+
+.btn--primary {
+	color: black;
+	background-color: var(--primary);
+}
+
+.btn--error {
+	background-color: transparent;
+	color: var(--error);
+	border-color: var(--error);
+
+	&:hover {
+		background-color: var(--error);
+		color: var(--background);
+	}
+}
+
+.btn--outline {
+	background-color: transparent;
+	border-color: var(--secondary);
+	color: var(--secondary);
+
+	&:hover {
+		background-color: var(--secondary);
+		color: var(--background);
+	}
+}
+
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.btn-group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--space-2xs);
+}
+
+.truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* number of lines to show */
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+	max-width: 65ch;
+}
+
+input[type='text'] {
+	background-color: transparent;
+	height: 40px;
+	font-size: var(--step-0);
+	padding: var(--space-s) var(--space-xs);
+	border: 1px solid var(--border);
+	border-radius: var(--border-radius-3);
+	color: var(--copy);
+}
+
+svg {
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+button {
+	all: unset;
+}
+
+p {
+	line-height: 150%;
+}

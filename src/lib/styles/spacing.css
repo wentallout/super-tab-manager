@@ -1,0 +1,13 @@
+/* @link https://utopia.fyi/space/calculator?c=320,16,1.2,1240,18,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+	--space-3xs: clamp(0.25rem, 0.25rem + 0vi, 0.25rem);
+	--space-2xs: clamp(0.4375rem, 0.4158rem + 0.1087vi, 0.5rem);
+	--space-xs: clamp(0.6875rem, 0.6658rem + 0.1087vi, 0.75rem);
+	--space-s: clamp(0.875rem, 0.8315rem + 0.2174vi, 1rem);
+	--space-m: clamp(1.3125rem, 1.2473rem + 0.3261vi, 1.5rem);
+	--space-l: clamp(1.75rem, 1.663rem + 0.4348vi, 2rem);
+	--space-xl: clamp(2.625rem, 2.4946rem + 0.6522vi, 3rem);
+	--space-2xl: clamp(3.5rem, 3.3261rem + 0.8696vi, 4rem);
+	--space-3xl: clamp(5.25rem, 4.9891rem + 1.3043vi, 6rem);
+}

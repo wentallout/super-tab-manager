@@ -1,0 +1,66 @@
+:root {
+	accent-color: var(--primary);
+	color-scheme: dark light;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--primary: #94c8ff;
+		--primary-content: hsl(211, 100%, 29%);
+		--primary-dark: hsl(211, 100%, 69%);
+		--primary-light: hsl(212, 100%, 89%);
+
+		--secondary: hsl(31, 100%, 79%);
+		--secondary-content: hsl(31, 100%, 29%);
+		--secondary-dark: hsl(31, 100%, 69%);
+		--secondary-light: hsl(32, 100%, 89%);
+
+		--background: hsl(210, 7%, 94%);
+		--foreground: hsl(0, 0%, 98%);
+		--border: hsl(216, 8%, 88%);
+
+		--copy: hsl(210, 8%, 15%);
+		--copy-light: hsl(210, 8%, 40%);
+		--copy-lighter: hsl(212, 7%, 55%);
+
+		--success: hsl(120, 100%, 79%);
+		--warning: hsl(60, 100%, 79%);
+		--error: hsl(0, 100%, 79%);
+		--info: hsl(240, 100%, 79%);
+		--success-content: hsl(120, 100%, 29%);
+		--warning-content: hsl(60, 100%, 29%);
+		--error-content: hsl(0, 100%, 29%);
+		--info-content: hsl(240, 100%, 29%);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--primary: hsl(211, 100%, 79%);
+		--primary-content: hsl(211, 100%, 29%);
+		--primary-dark: hsl(211, 100%, 69%);
+		--primary-light: hsl(212, 100%, 89%);
+
+		--secondary: hsl(31, 100%, 79%);
+		--secondary-content: hsl(31, 100%, 29%);
+		--secondary-dark: hsl(31, 100%, 69%);
+		--secondary-light: hsl(32, 100%, 89%);
+
+		--background: hsl(220, 6%, 10%);
+		--foreground: hsl(210, 8%, 15%);
+		--border: hsl(210, 8%, 25%);
+
+		--copy: hsl(0, 0%, 98%);
+		--copy-light: hsl(210, 8%, 85%);
+		--copy-lighter: hsl(212, 7%, 65%);
+
+		--success: hsl(120, 100%, 79%);
+		--warning: hsl(60, 100%, 79%);
+		--error: hsl(0, 100%, 79%);
+		--info: hsl(210, 100%, 79%);
+		--success-content: hsl(120, 100%, 29%);
+		--warning-content: hsl(60, 100%, 29%);
+		--error-content: hsl(0, 100%, 29%);
+		--info-content: hsl(210, 100%, 29%);
+	}
+}

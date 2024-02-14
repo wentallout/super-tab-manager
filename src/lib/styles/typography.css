@@ -1,0 +1,31 @@
+/* inter-regular - latin */
+@font-face {
+	font-display: swap;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 300 600;
+	src: url('/fonts/Inter.woff2') format('woff2');
+}
+
+body {
+	line-height: 150%;
+	font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* @link https://utopia.fyi/type/calculator?c=320,14,1.125,1240,16,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+	--step--2: clamp(0.64rem, 0.7092rem + -0.0893vi, 0.6914rem);
+	--step--1: clamp(0.7778rem, 0.77rem + 0.0386vi, 0.8rem);
+	--step-0: clamp(0.875rem, 0.8315rem + 0.2174vi, 1rem);
+	--step-1: clamp(0.9844rem, 0.892rem + 0.462vi, 1.25rem);
+	--step-2: clamp(1.1074rem, 0.9491rem + 0.7914vi, 1.5625rem);
+	--step-3: clamp(1.2458rem, 0.9998rem + 1.23vi, 1.9531rem);
+	--step-4: clamp(1.4016rem, 1.0399rem + 1.8084vi, 2.4414rem);
+	--step-5: clamp(1.5768rem, 1.0637rem + 2.5652vi, 3.0518rem);
+}
+
+h3 {
+	margin-bottom: var(--space-m);
+	font-size: var(--step-1);
+}
