@@ -6,9 +6,9 @@
 	import { Globe, Tab } from '$lib/icons.ts';
 </script>
 
-<div class="g-pad">
+<!-- <div class="g-pad">
 	<button on:click={() => openOptionsPage()}>Options</button>
-</div>
+</div> -->
 
 <header>
 	<nav>
@@ -37,13 +37,13 @@
 <style>
 	header {
 		width: 100%;
-		background-color: var(--background);
-		background-image: url('https://transparenttextures.com/patterns/inflicted.png');
 		font-size: var(--step-1);
 		position: sticky;
 		top: 0;
 		left: 0;
 		z-index: 9999;
+		background-color: var(--background);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.nav {
@@ -74,6 +74,7 @@
 
 				&:hover {
 					color: var(--primary-light);
+					background-color: var(--foreground);
 				}
 
 				&.active {

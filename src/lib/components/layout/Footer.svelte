@@ -19,8 +19,7 @@
 <style>
 	.footer {
 		width: 100%;
-		background-color: #00000050;
-		background-image: url('https://transparenttextures.com/patterns/inflicted.png');
+
 		font-size: var(--step--1);
 		display: flex;
 		flex-direction: row;

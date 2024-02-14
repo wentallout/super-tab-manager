@@ -26,6 +26,6 @@ body {
 }
 
 h3 {
-	margin-bottom: var(--space-m);
+	margin-bottom: var(--space-xs);
 	font-size: var(--step-1);
 }

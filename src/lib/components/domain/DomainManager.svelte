@@ -36,13 +36,14 @@
 								closeTabsByDomain(domain.title);
 							}}>
 							<DeleteForever />
-							Close</button>
+							Close
+						</button>
 					</div>
 				</div>
 			{/each}
 		</div>
 	{:else}
-		<div class="">nothing here lol</div>
+		<div class="">nothing</div>
 	{/if}
 </section>
 

@@ -19,6 +19,7 @@
 
 <section class="current">
 	{#if currentTabInfo}
+		<h3>Current</h3>
 		<div class="tab__item">
 			<button class="tab__info" on:click={() => focusTabById(currentTabInfo.id)}>
 				<img
@@ -41,8 +42,8 @@
 	.current {
 		margin-bottom: var(--space-m);
 		display: flex;
-		flex-direction: row;
-		gap: var(--space-m);
+		flex-direction: column;
+		gap: var(--space-2xs);
 	}
 
 	.tab__item {

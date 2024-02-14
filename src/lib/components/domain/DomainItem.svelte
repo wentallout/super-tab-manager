@@ -43,9 +43,10 @@
 	}
 
 	.domain__title {
-		font-size: var(--step-1);
+		font-size: var(--step-0);
 		font-weight: 600;
 		height: fit-content;
+		color: var(--copy);
 	}
 
 	.domain__sub {

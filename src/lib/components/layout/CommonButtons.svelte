@@ -29,7 +29,7 @@
 
 <div class="common-buttons g-pad">
 	<button class="btn btn--primary" on:click={groupTabsByAllDomains}>
-		<TabGroup />
+		<TabGroup width="24" height="24" />
 		Group Tabs By Domain
 	</button>
 </div>
