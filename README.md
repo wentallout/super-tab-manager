@@ -1,4 +1,5 @@
-# What is Super Tab Manager
+# Super Tab Manager
+![thumbnail](https://github.com/wentallout/super-tab-manager/assets/76118931/dd8b9dde-7abf-4ce3-bc9a-194eb90ba1df)
 
 A chrome extension that helps you clean and manage your messy tabs.
 
