@@ -2,6 +2,7 @@
 	import { focusTabById, getTabInfo } from '$lib/utils/chromeUtils';
 	import { onMount } from 'svelte';
 	import TabButtons from '$components/tab/TabButtons.svelte';
+	import MemoryViewer from '$components/layout/MemoryViewer.svelte';
 
 	async function getIdOfCurrentTab() {
 		const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -20,9 +21,9 @@
 	});
 </script>
 
+<MemoryViewer />
 <section class="current g-pad">
 	{#if currentTabInfo}
-		<h3>Current Tab</h3>
 		<div class="tab__item">
 			<button class="tab__info" on:click={() => focusTabById(currentTabInfo.id)}>
 				<img

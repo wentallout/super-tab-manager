@@ -45,6 +45,7 @@
 		flex-direction: row;
 		gap: var(--space-2xs);
 		padding: var(--space-2xs) var(--space-s);
+		border-bottom: 1px solid var(--border);
 
 		& .memory__title {
 			display: flex;

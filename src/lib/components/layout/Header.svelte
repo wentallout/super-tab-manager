@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	// import { openOptionsPage } from '$lib/utils/chromeUtils';
 
-	import MemoryViewer from '$components/layout/MemoryViewer.svelte';
 	import { Globe, Tab } from '$lib/icons.ts';
 	import TabCurrent from '$components/tab/TabCurrent.svelte';
 </script>
@@ -33,7 +32,6 @@
 	</nav>
 </header>
 <TabCurrent />
-<MemoryViewer />
 
 <style>
 	header {
