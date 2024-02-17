@@ -3,16 +3,13 @@
 
 	import { flip } from 'svelte/animate';
 	import { quintOut } from 'svelte/easing';
-	import TabButtons from './TabButtons.svelte';
+	import TabButtons from '$components/tab/TabButtons.svelte';
 	export let tabList: chrome.tabs.Tab[];
 </script>
 
 {#each tabList as tab (tab.id)}
 	<div class="tab__item" animate:flip={{ duration: 250, easing: quintOut }}>
-		<button
-			class="tab__info"
-			on:keydown={() => focusTabById(tab.id)}
-			on:click={() => focusTabById(tab.id)}>
+		<button class="tab__info" on:click={() => focusTabById(tab.id)}>
 			<img class="tab__favicon" alt="favicon" height="16px" src={tab.favIconUrl} width="16px" />
 			<p class="tab__select truncate">
 				{tab.title}
@@ -32,6 +29,14 @@
 		border-radius: var(--border-radius-1);
 		width: 100%;
 		overflow: hidden;
+	}
+
+	.tab__favicon {
+		width: 16px;
+		height: 16px;
+		aspect-ratio: 1/1;
+		flex-shrink: 0;
+		flex-grow: 0;
 	}
 
 	.tab__info {

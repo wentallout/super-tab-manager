@@ -4,6 +4,6 @@
 	import TabSearch from '$lib/components/tab/TabSearch.svelte';
 </script>
 
-<TabCurrent />
+
 <TabSearch />
 <TabManager />

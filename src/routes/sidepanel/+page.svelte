@@ -1,1 +1,0 @@
-<div>sidePanel here</div>

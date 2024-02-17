@@ -1,6 +1,9 @@
 /** @type { import("eslint").Linter.Config } */
 module.exports = {
 	root: true,
+	globals: {
+		chrome: true
+	},
 	extends: [
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',

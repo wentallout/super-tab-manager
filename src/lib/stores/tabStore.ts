@@ -26,12 +26,13 @@ export async function closeDuplicatedTabs() {
 
 	tabs.forEach(async (tab) => {
 		if (uniqueUrls.has(tab.url)) {
-			chrome.tabs.remove(tab.id as number);
+			// chrome.tabs.remove(tab.id as number);
+			closeTabById(tab.id as number);
 		} else {
 			tab.url && uniqueUrls.add(tab.url);
 		}
 	});
-
+	getAllTabs();
 	toast.success('Closed duplicated tabs.');
 	duplicatedTabCountStore.set(0);
 }
@@ -52,7 +53,7 @@ export async function groupTabsByOneDomain(domain: string) {
 		// Update the group with a title
 		await chrome.tabGroups.update(groupId, { title: domain, collapsed: true });
 
-		toast.success(`Grouped ${domain} tabs.`);
+		toast.success(`Grouped ${domain} tab.`);
 		tabListStore.set(tabs);
 	} catch (error) {
 		toast.error('Grouped tabs failed.');
@@ -67,7 +68,7 @@ export async function closeTabsByDomain(domain: string) {
 	for (const tab of tabs) {
 		const tabDomain = new URL(tab.url!).hostname;
 		if (tabDomain.includes(domain)) {
-			chrome.tabs.remove(tab.id as number);
+			closeTabById(tab.id as number);
 			closeCount++;
 		}
 	}
@@ -86,7 +87,9 @@ export async function closeTabById(tabId: number) {
 		tabListStore.update((tabs) => tabs.filter((tab) => tab.id !== tabId));
 		tabListSearchResultStore.update((tabs) => tabs.filter((tab) => tab.id !== tabId));
 	});
-	toast.success(`Closed tab ${tab.title}.`);
+	toast.success(`Closed tab.`, {
+		description: `${tab.title}`
+	});
 }
 
 export async function bookmarkTabById(tabId: number) {
@@ -100,7 +103,9 @@ export async function bookmarkTabById(tabId: number) {
 			parentId: undefined
 		});
 
-		toast.success(`Bookmarked ${tabInfo.title}`);
+		toast.success(`Bookmarked tab.`, {
+			description: `${tabInfo.title}`
+		});
 	} catch (error) {
 		toast.error(`Bookmarked failed`);
 	}
