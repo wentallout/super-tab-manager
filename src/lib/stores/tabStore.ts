@@ -11,6 +11,7 @@ import {
 } from '$stores/countStore';
 import { getNsfwList, getSocialList } from '$stores/filterListStore';
 import { getTabInfo } from '$lib/utils/chromeUtils';
+import { formatTabDomain } from '$lib/utils/urlUtils';
 
 export const tabListStore = writable<chrome.tabs.Tab[]>([]);
 export const tabListSearchResultStore = writable<chrome.tabs.Tab[]>([]);
@@ -114,6 +115,8 @@ export async function bookmarkTabById(tabId: number) {
 export async function searchTabs(input: string) {
 	const allTabs = await chrome.tabs.query({});
 
+	console.log(input);
+
 	if (input.length !== 0) {
 		const filteredTabs = allTabs.filter((tab) =>
 			tab.title?.toLowerCase().includes(input.toLowerCase())
@@ -129,13 +132,13 @@ export async function closeNsfwTabs() {
 	const tabs = await chrome.tabs.query({});
 
 	for (const tab of tabs) {
-		const tabDomain = new URL(tab.url ?? '').hostname;
+		const tabDomain = formatTabDomain(tab.url!);
 		if (nsfwList.includes(tabDomain)) {
 			chrome.tabs.remove(tab.id as number);
 		}
 	}
 	toast.success('Closed all NSFW tabs.');
-	nsfwTabCountStore.set(await getCountNsfwTabs());
+	nsfwTabCountStore.set(0);
 }
 
 export async function closeSocialTabs(): Promise<void> {
@@ -143,7 +146,8 @@ export async function closeSocialTabs(): Promise<void> {
 	const tabs = await chrome.tabs.query({});
 
 	for (const tab of tabs) {
-		const tabDomain = new URL(tab.url ?? '').hostname;
+		const tabDomain = formatTabDomain(tab.url!);
+
 		if (socialList.includes(tabDomain)) {
 			chrome.tabs.remove(tab.id as number);
 		}

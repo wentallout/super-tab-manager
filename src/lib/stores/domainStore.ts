@@ -4,6 +4,7 @@ import { writable } from 'svelte/store';
 export const domainsStore = writable<Domain[]>([]);
 
 import { getFaviconByUrl } from '$lib/utils/faviconUtils';
+import { formatTabDomain } from '$lib/utils/urlUtils';
 
 export async function getAllDomains() {
 	const tabs = await chrome.tabs.query({});
@@ -11,7 +12,7 @@ export async function getAllDomains() {
 	const domainsMap = new Map<string, number>();
 	tabs.forEach((tab) => {
 		const url = new URL(tab.url!);
-		const hostname = url.hostname;
+		const hostname = url.hostname.replace(/^www\./, '');
 		if (domainsMap.has(hostname)) {
 			domainsMap.set(hostname, domainsMap.get(hostname) + 1);
 		} else {

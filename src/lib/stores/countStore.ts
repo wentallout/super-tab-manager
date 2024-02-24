@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
 import { getNsfwList, getSocialList } from '$stores/filterListStore';
+import { formatTabDomain } from '$lib/utils/urlUtils';
 
 export const nsfwTabCountStore = writable<number>(0);
 export const socialTabCountStore = writable<number>(0);
@@ -19,8 +20,9 @@ export async function getCountNsfwTabs() {
 	const tabs = await chrome.tabs.query({});
 
 	tabs.forEach((tab) => {
-		const tabDomain = new URL(tab.url!).hostname;
-		if (nsfwList.includes(tabDomain)) {
+		const tabDomain = formatTabDomain(tab.url!);
+
+		if (nsfwList.includes(tabDomain!)) {
 			count += 1;
 		}
 	});
@@ -35,7 +37,7 @@ export async function getCountSocialTabs() {
 	const tabs = await chrome.tabs.query({});
 
 	tabs.forEach((tab) => {
-		const tabDomain = new URL(tab.url!).hostname;
+		const tabDomain = formatTabDomain(tab.url!);
 		if (socialList.includes(tabDomain)) {
 			count += 1;
 		}

@@ -4,7 +4,11 @@
 	import TabItemList from '$components/tab/TabItemList.svelte';
 	import { Search } from '$lib/icons';
 
-	let tabSearchInput: string;
+	import TabAll from '$components/tab/TabAll.svelte';
+
+	let tabSearchInput: string = '';
+
+	import { slide, fade } from 'svelte/transition';
 </script>
 
 <section>
@@ -20,16 +24,25 @@
 	</div>
 </section>
 
-<section class="search__section">
-	{#if $tabListSearchResultStore.length > 0}
+{#if tabSearchInput}
+	<section class="search__section" transition:slide={{ duration: 300, axis: 'y' }}>
 		<h3 class="search__heading">Search Result</h3>
-		<div class="search__result">
-			<TabItemList tabList={$tabListSearchResultStore} />
-		</div>
-	{/if}
-</section>
+		{#if $tabListSearchResultStore.length > 0}
+			<div class="search__result" transition:fade>
+				<TabItemList tabList={$tabListSearchResultStore} />
+			</div>
+		{:else}
+			<p>No tabs with that title</p>
+		{/if}
+	</section>
+{/if}
+
+<TabAll searchInput={tabSearchInput} />
 
 <style>
+	.search__section {
+	}
+
 	.search {
 		display: flex;
 		flex-direction: row;
@@ -39,8 +52,8 @@
 	}
 
 	.search__heading {
-		margin-top: var(--space-s);
 		margin-bottom: var(--space-m);
+		color: var(--copy-light);
 	}
 
 	.search__result {
@@ -48,7 +61,7 @@
 		--gap: var(--space-xs);
 		display: grid;
 		grid-gap: var(--gap);
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), var(--min)));
 		overflow: hidden;
 	}
 

@@ -22,10 +22,4 @@ export async function focusTabById(tabId: number) {
 	}
 }
 
-// export async function openOptionsPage() {
-// 	try {
-// 		await chrome.runtime.openOptionsPage();
-// 	} catch (error) {
-// 		console.error('Error opening options page:', error.message);
-// 	}
-// }
+

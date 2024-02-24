@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { tabListStore, getAllTabs, tabListSearchResultStore } from '$lib/stores/tabStore';
+	import { tabListStore, getAllTabs } from '$lib/stores/tabStore';
 
 	import TabItemList from './TabItemList.svelte';
 
 	onMount(() => {
 		getAllTabs();
 	});
+
+	export let searchInput: string;
 </script>
 
-{#if $tabListSearchResultStore.length === 0}
+{#if searchInput.length === 0}
 	<div class="tab">
 		{#if $tabListStore}
 			<TabItemList tabList={$tabListStore} />
@@ -27,7 +29,7 @@
 		display: grid;
 		grid-gap: var(--gap);
 
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), var(--min)));
 		overflow: hidden;
 
 		& .tab__item {

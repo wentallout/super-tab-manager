@@ -19,13 +19,13 @@
 					class:active={$page.url.pathname === '/' || $page.url.pathname === '/index.html'}
 					href="/">
 					<Tab height="24" width="24" />
-					<p>Tabs</p>
+					Tabs
 				</a>
 			</li>
 			<li class="nav__item">
 				<a class="nav__link" class:active={$page.url.pathname === '/domains'} href="/domains">
 					<Globe height="24" width="24" />
-					<p>Domains</p>
+					Domains
 				</a>
 			</li>
 		</ul>

@@ -4,7 +4,7 @@
 
 	import { Check, Error, Warning, Info } from '$lib/icons.ts';
 
-	import { TOASTER_DURATION } from '$lib/constants/ui.ts';
+	import { TOASTER_DURATION, TOASTER_VISIBLE } from '$lib/constants/ui.ts';
 </script>
 
 <Toaster
@@ -14,7 +14,7 @@
 	toastOptions={{
 		class: 'custom-toast'
 	}}
-	visibleToasts={9}>
+	visibleToasts={TOASTER_VISIBLE}>
 	<Check slot="success-icon" />
 	<Error slot="error-icon" />
 	<Info slot="info-icon" />
@@ -40,15 +40,26 @@
 		&[data-type='info'] {
 			color: var(--info-content) !important;
 		}
-		& svg {
-			aspect-ratio: 1 / 1;
-			flex-shrink: 0;
-			flex-grow: 0;
+
+		&[data-description] {
+			color: var(--background) !important;
+			font-size: var(--step--1);
 		}
 	}
 
-	[data-icon] {
+	.custom-toast [data-icon] {
 		width: 24px !important;
 		height: 24px !important;
+		aspect-ratio: 1 / 1;
+		flex-shrink: 0;
+		flex-grow: 0;
+	}
+
+	.custom-toast [data-icon] svg {
+		width: 24px !important;
+		height: 24px !important;
+		aspect-ratio: 1 / 1;
+		flex-shrink: 0;
+		flex-grow: 0;
 	}
 </style>

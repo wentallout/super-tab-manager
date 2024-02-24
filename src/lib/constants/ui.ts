@@ -3,6 +3,8 @@
  */
 export const TOASTER_DURATION: number = 2500;
 
+export const TOASTER_VISIBLE: number = 9;
+
 export const APP_NAME: string = 'Super Tab Manager';
 
 export const WEBSITE: string = 'https://wentallout.io.vn';

@@ -20,19 +20,15 @@
 <div class="memory">
 	<div class="memory__title">
 		<Memory />
-		Memory
 	</div>
 	{#if $memoryInfoStore}
-		<span>
+		<div class="memory__value">
 			{convertBytesToMb($memoryInfoStore.capacity) -
-				convertBytesToMb($memoryInfoStore.availableCapacity)} MB
-		</span>
-		<span>/</span>
-		<span>
+				convertBytesToMb($memoryInfoStore.availableCapacity)} MB /
 			<strong>
 				{convertBytesToMb($memoryInfoStore.capacity)} MB
 			</strong>
-		</span>
+		</div>
 	{:else}
 		<div>?</div>
 	{/if}
@@ -53,5 +49,9 @@
 			gap: var(--space-2xs);
 			align-items: center;
 		}
+	}
+
+	.memory__value {
+		font-family: monospace;
 	}
 </style>

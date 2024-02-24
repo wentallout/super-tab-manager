@@ -4,6 +4,9 @@
 	import CommonButtons from '$lib/components/layout/CommonButtons.svelte';
 	import Header from '$lib/components/layout/Header.svelte';
 	import ToastCustom from '$components/toast/ToastCustom.svelte';
+	import { getSocialList } from '$stores/filterListStore';
+
+	console.log(getSocialList());
 </script>
 
 <ToastCustom />

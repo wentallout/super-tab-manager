@@ -21,6 +21,7 @@
 	});
 </script>
 
+<!-- <VolumeController /> -->
 <MemoryViewer />
 <section class="current g-pad">
 	{#if currentTabInfo}
