@@ -61,6 +61,9 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: var(--space-s);
+	}
+
+	.common-buttons:has(button:not(:disabled)) {
 		border-bottom: 1px solid var(--border);
 	}
 </style>

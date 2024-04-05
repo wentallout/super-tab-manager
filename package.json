@@ -15,7 +15,7 @@
 		"test:unit": "vitest"
 	},
 	"devDependencies": {
-		"@iconify-json/material-symbols-light": "^1.1.11",
+		"@iconify-json/material-symbols-light": "^1.1.16",
 		"@playwright/test": "^1.41.1",
 		"@sveltejs/adapter-auto": "^3.1.1",
 		"@sveltejs/adapter-static": "^3.0.1",
@@ -27,7 +27,7 @@
 		"@typescript-eslint/parser": "^6.19.1",
 		"autoprefixer": "^10.4.16",
 		"browserslist": "^4.22.3",
-		"chrome-types": "^0.1.254",
+		"chrome-types": "^0.1.277",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",

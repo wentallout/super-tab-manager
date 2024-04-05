@@ -1,4 +1,3 @@
-import { memoryInfoStore } from '$lib/stores/memoryInfoStore';
 import { toast } from 'svelte-sonner';
 
 export async function getTabInfo(tabId: number) {
@@ -6,7 +5,9 @@ export async function getTabInfo(tabId: number) {
 	return tabInfo;
 }
 
-export async function focusTabById(tabId: number) {
+export async function focusTabById(tabId: number | undefined) {
+	if (!tabId) return;
+
 	try {
 		const tabInfo = await getTabInfo(tabId);
 
@@ -21,5 +22,3 @@ export async function focusTabById(tabId: number) {
 		}
 	}
 }
-
-

@@ -10,24 +10,28 @@ import Search from '~icons/material-symbols-light/search';
 import Globe from '~icons/material-symbols-light/globe';
 import Tab from '~icons/material-symbols-light/tab-outline-rounded';
 import TabGroup from '~icons/material-symbols-light/tab-group-outline-rounded';
-
 import DeleteForever from '~icons/material-symbols-light/delete-forever-outline-rounded';
-
 import Close from '~icons/material-symbols-light/close-rounded';
 import Bookmark from '~icons/material-symbols-light/bookmark-add-outline-rounded';
+import Keep from '~icons/material-symbols-light/keep-outline-rounded';
+import KeepOff from '~icons/material-symbols-light/keep-off-outline-rounded';
 
-export { Search };
-export { Globe };
-export { Tab };
-export { Check };
-export { Error };
-export { Warning };
-export { Info };
-export { Recycling };
-export { Danger };
-export { SocialIcon };
-export { Memory };
-export { TabGroup };
-export { Close };
-export { Bookmark };
-export { DeleteForever };
+export {
+	Search,
+	Globe,
+	Check,
+	Error,
+	Tab,
+	Warning,
+	Info,
+	Recycling,
+	Danger,
+	SocialIcon,
+	Memory,
+	TabGroup,
+	Close,
+	Bookmark,
+	DeleteForever,
+	Keep,
+	KeepOff
+};

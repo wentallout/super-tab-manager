@@ -4,8 +4,8 @@ import { domainsStore } from '$stores/domainStore';
 import { getFaviconByUrl } from '$lib/utils/faviconUtils';
 import { toast } from 'svelte-sonner';
 import {
-	getCountNsfwTabs,
 	duplicatedTabCountStore,
+	getCountNsfwTabs,
 	nsfwTabCountStore,
 	socialTabCountStore
 } from '$stores/countStore';
@@ -26,7 +26,7 @@ export async function closeDuplicatedTabs() {
 	const uniqueUrls = new Set<string>();
 
 	tabs.forEach(async (tab) => {
-		if (uniqueUrls.has(tab.url)) {
+		if (uniqueUrls.has(tab.url!)) {
 			// chrome.tabs.remove(tab.id as number);
 			closeTabById(tab.id as number);
 		} else {
@@ -39,42 +39,48 @@ export async function closeDuplicatedTabs() {
 }
 
 export async function groupTabsByOneDomain(domain: string) {
+	if (!domain) {
+		throw new Error('Domain cannot be empty');
+	}
+
 	try {
 		const tabs: chrome.tabs.Tab[] = await chrome.tabs.query({});
 
-		//find all tabs with the domain
-		const tabsToGroup = tabs.filter((tab) => tab.url?.includes(domain));
+		if (!tabs.length) {
+			throw new Error('No tabs found');
+		}
 
-		//get tabIds as array number[]
-		const tabIds: number[] = tabsToGroup.map((tab) => tab.id as number);
+		const tabIds = tabs.reduce((result, tab) => {
+			if (tab.url?.includes(domain)) {
+				result.push(tab.id as number);
+			}
+			return result;
+		}, [] as number[]);
 
-		// Group the tabs
+		if (!tabIds.length) {
+			throw new Error(`No tabs found for domain: ${domain}`);
+		}
+
 		const groupId = await chrome.tabs.group({ tabIds });
-
-		// Update the group with a title
 		await chrome.tabGroups.update(groupId, { title: domain, collapsed: true });
 
 		toast.success(`Grouped ${domain} tab.`);
 		tabListStore.set(tabs);
 	} catch (error) {
-		toast.error('Grouped tabs failed.');
+		toast.error(`Grouping tabs failed`);
 	}
 }
 
 export async function closeTabsByDomain(domain: string) {
-	let closeCount = 0;
-
 	const tabs = await chrome.tabs.query({});
 
 	for (const tab of tabs) {
 		const tabDomain = new URL(tab.url!).hostname;
 		if (tabDomain.includes(domain)) {
 			closeTabById(tab.id as number);
-			closeCount++;
 		}
 	}
 	domainsStore.update((domains) => domains.filter((d) => !d.title.includes(domain)));
-	toast.success(`Closed ${closeCount} ${domain} tab(s)`);
 }
 
 /**
@@ -82,7 +88,7 @@ export async function closeTabsByDomain(domain: string) {
  * @param {number} tabId - The ID of the tab to close.
  * @returns {Promise<void>} - A promise that resolves once the tab is closed.
  */
-export async function closeTabById(tabId: number) {
+export async function closeTabById(tabId: number | undefined) {
 	const tab = await getTabInfo(tabId);
 	chrome.tabs.remove(tabId, async () => {
 		tabListStore.update((tabs) => tabs.filter((tab) => tab.id !== tabId));
@@ -93,7 +99,7 @@ export async function closeTabById(tabId: number) {
 	});
 }
 
-export async function bookmarkTabById(tabId: number) {
+export async function bookmarkTabById(tabId: number | undefined) {
 	try {
 		const tabInfo = await getTabInfo(tabId);
 
@@ -113,46 +119,55 @@ export async function bookmarkTabById(tabId: number) {
 }
 
 export async function searchTabs(input: string) {
-	const allTabs = await chrome.tabs.query({});
-
-	console.log(input);
-
-	if (input.length !== 0) {
-		const filteredTabs = allTabs.filter((tab) =>
-			tab.title?.toLowerCase().includes(input.toLowerCase())
-		);
-		tabListSearchResultStore.set(filteredTabs);
-	} else {
+	if (!input) {
 		tabListSearchResultStore.set([]);
+		return;
 	}
+
+	const lowerCaseInput = input.toLowerCase();
+	const allTabs = await chrome.tabs.query({});
+	const filteredTabs = allTabs.filter((tab) => tab.title?.toLowerCase().includes(lowerCaseInput));
+
+	tabListSearchResultStore.set(filteredTabs);
 }
 
 export async function closeNsfwTabs() {
-	const nsfwList = getNsfwList();
-	const tabs = await chrome.tabs.query({});
+	try {
+		const nsfwList = getNsfwList();
+		const tabs = await chrome.tabs.query({});
 
-	for (const tab of tabs) {
-		const tabDomain = formatTabDomain(tab.url!);
-		if (nsfwList.includes(tabDomain)) {
-			chrome.tabs.remove(tab.id as number);
-		}
+		const closeTabPromises = tabs
+			.filter((tab) => tab.url && nsfwList.includes(formatTabDomain(tab.url)))
+			.map((tab) => tab.id && chrome.tabs.remove(tab.id));
+
+		await Promise.all(closeTabPromises);
+
+		toast.success('Closed all NSFW tabs.');
+		// nsfwTabCountStore.set(0);
+
+		const newCount = await getCountNsfwTabs();
+		nsfwTabCountStore.update((n) => {
+			return newCount;
+		});
+	} catch (error) {
+		toast.error('Error closing NSFW tabs. Please try again.');
 	}
-	toast.success('Closed all NSFW tabs.');
-	nsfwTabCountStore.set(0);
 }
 
 export async function closeSocialTabs(): Promise<void> {
 	const socialList = getSocialList();
 	const tabs = await chrome.tabs.query({});
 
-	for (const tab of tabs) {
+	const socialTabs = tabs.filter((tab) => {
 		const tabDomain = formatTabDomain(tab.url!);
+		return socialList.has(tabDomain);
+	});
 
-		if (socialList.includes(tabDomain)) {
-			chrome.tabs.remove(tab.id as number);
-		}
+	const socialTabIds = socialTabs.map((tab) => tab.id!).filter((id) => id !== undefined);
+
+	if (socialTabIds.length > 0) {
+		await chrome.tabs.remove(socialTabIds);
 	}
-	toast.success('Closed all social tabs.');
 	socialTabCountStore.set(0);
 }
 
@@ -176,6 +191,29 @@ export async function groupTabsByAllDomains() {
 
 	resolvedUniqueDomains.forEach((domain) => {
 		groupTabsByOneDomain(domain.title);
-		toast.success(`Grouped all tabs.`);
 	});
+}
+
+export async function pinTabById(tabId: number | undefined) {
+	if (tabId) {
+		try {
+			await chrome.tabs.update(tabId, { pinned: true });
+			toast.success(`Pinned tab.`);
+			getAllTabs();
+		} catch (error) {
+			toast.error(`Error pinning tab. Please try again.`);
+		}
+	}
+}
+
+export async function unpinTabById(tabId: number | undefined) {
+	if (tabId) {
+		try {
+			await chrome.tabs.update(tabId, { pinned: false });
+			toast.success(`Unpinned tab.`);
+			getAllTabs();
+		} catch (error) {
+			toast.error(`Error unpinning`);
+		}
+	}
 }

@@ -19,7 +19,7 @@
 
 <div class="memory">
 	<div class="memory__title">
-		<Memory />
+		<Memory height="16" width="16" />
 	</div>
 	{#if $memoryInfoStore}
 		<div class="memory__value">

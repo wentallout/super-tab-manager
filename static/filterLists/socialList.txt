@@ -3,8 +3,6 @@ plus.l.google.com
 plus.sandbox.google.com
 plusone.google.com
 plus.google.com
-
-
 0-act.channel.facebook.com
 0-edge-chat.facebook.com
 0.beta.facebook.com
@@ -2650,8 +2648,6 @@ www.myspace.com
 www.myspacecdn.com
 www1.myspace.com
 x.myspacecdn.com
-
-
 about.pinterest.com
 accounts.pinterest.com
 ads.pinterest.com
@@ -2695,8 +2691,6 @@ www.pinterest.com.au
 www.pinterest.com.edgekey.net
 www.pinterest.com.gslb.pinterest.com
 www.pinterest.fr
-
-
 24.media.tumblr.com
 25.media.tumblr.com
 28.media.tumblr.com

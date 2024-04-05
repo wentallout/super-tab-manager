@@ -4,11 +4,8 @@
 
 	import { Globe, Tab } from '$lib/icons.ts';
 	import TabCurrent from '$components/tab/TabCurrent.svelte';
+	import { tabListStore } from '$stores/tabStore';
 </script>
-
-<!-- <div class="g-pad">
-	<button on:click={() => openOptionsPage()}>Options</button>
-</div> -->
 
 <header>
 	<nav>
@@ -19,7 +16,7 @@
 					class:active={$page.url.pathname === '/' || $page.url.pathname === '/index.html'}
 					href="/">
 					<Tab height="24" width="24" />
-					Tabs
+					Tabs ({$tabListStore.length})
 				</a>
 			</li>
 			<li class="nav__item">

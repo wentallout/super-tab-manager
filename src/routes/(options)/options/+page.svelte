@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { onMount } from 'svelte';
 	const saveOptions = () => {
 		const color = document.getElementById('color').value;
@@ -45,4 +45,4 @@
 </label>
 
 <div id="status"></div>
-<button on:click={() => saveOptions()} id="save">Save</button>
+<button on:click={() => saveOptions()} id="save">Save</button> -->

@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	import TabButtons from '$components/tab/TabButtons.svelte';
 	import MemoryViewer from '$components/layout/MemoryViewer.svelte';
+	import { bookmarkTabById, closeTabById } from '$stores/tabStore';
+	import { Bookmark, Close } from '$lib/icons';
 
 	async function getIdOfCurrentTab() {
 		const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -21,9 +23,8 @@
 	});
 </script>
 
-<!-- <VolumeController /> -->
 <MemoryViewer />
-<section class="current g-pad">
+<section class="current">
 	{#if currentTabInfo}
 		<div class="tab__item">
 			<button class="tab__info" on:click={() => focusTabById(currentTabInfo.id)}>
@@ -38,7 +39,16 @@
 				</p>
 			</button>
 
-			<TabButtons tab={currentTabInfo} />
+			<div class="tab__btns">
+				{#if currentTabInfo.id}
+					<button class="btn--small" on:click={() => bookmarkTabById(currentTabInfo.id)}>
+						<Bookmark height="24" width="24" />
+					</button>
+					<button class="btn--small" on:click={() => closeTabById(currentTabInfo.id)}>
+						<Close height="24" width="24" />
+					</button>
+				{/if}
+			</div>
 		</div>
 	{/if}
 </section>
@@ -48,13 +58,16 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-2xs);
+		padding: 0 var(--space-s);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.tab__item {
 		display: flex;
 		flex-direction: row;
 		font-size: var(--step--1);
-		border: 1px solid var(--primary);
+		justify-content: space-between;
+
 		border-radius: var(--border-radius-1);
 		width: 100%;
 		overflow: hidden;
@@ -68,12 +81,17 @@
 	}
 
 	.tab__title:hover {
-		overflow: visible;
-		white-space: normal;
-		word-break: break-all;
-		z-index: 1;
 		background-color: var(--background);
-		width: 100%;
+	}
+
+	.tab__btns {
+		display: flex;
+		flex-direction: row;
+		color: var(--copy);
+
+		& .btn--small {
+			color: white;
+		}
 	}
 
 	.tab__info {
@@ -81,12 +99,10 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: var(--space-xs);
-		padding: var(--space-2xs) var(--space-xs);
+		gap: var(--space-2xs);
 		color: var(--copy);
 		flex-grow: 0;
 		min-width: 65ch;
-		border-right: 1px solid var(--border);
 
 		& .tab__favicon {
 			flex-shrink: 0;

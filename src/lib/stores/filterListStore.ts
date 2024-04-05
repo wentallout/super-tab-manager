@@ -9,7 +9,13 @@ export function getNsfwList(): string[] {
 	return fileContent.split('\n').map((domain) => domain.trim());
 }
 
-export function getSocialList(): string[] {
-	const fileContent = socialTxtAsString;
-	return fileContent.split('\n').map((domain) => domain.trim());
+// export function getSocialList(): string[] {
+// 	const fileContent = socialTxtAsString;
+// 	return fileContent.split('\n').map((domain) => domain.trim());
+// }
+
+export function getSocialList(): Set<string> {
+    const fileContent = socialTxtAsString;
+    const socialList = fileContent.split('\n').map((domain) => domain.trim());
+    return new Set(socialList);
 }

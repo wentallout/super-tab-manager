@@ -10,7 +10,11 @@ module.exports = {
 		'plugin:svelte/recommended',
 		'prettier'
 	],
-	rules: { 'svelte/sort-attributes': 'warn' },
+	rules: {
+		'svelte/sort-attributes': 'warn',
+		'no-unused-vars': 'off',
+		'@typescript-eslint/no-unused-vars': 'warn'
+	},
 	parser: '@typescript-eslint/parser',
 	plugins: ['@typescript-eslint'],
 	parserOptions: {

@@ -8,7 +8,7 @@
 
 	let tabSearchInput: string = '';
 
-	import { slide, fade } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 </script>
 
 <section>
@@ -25,14 +25,14 @@
 </section>
 
 {#if tabSearchInput}
-	<section class="search__section" transition:slide={{ duration: 300, axis: 'y' }}>
+	<section class="search__section">
 		<h3 class="search__heading">Search Result</h3>
 		{#if $tabListSearchResultStore.length > 0}
 			<div class="search__result" transition:fade>
 				<TabItemList tabList={$tabListSearchResultStore} />
 			</div>
 		{:else}
-			<p>No tabs with that title</p>
+			<p class="notab" transition:fade>No tabs with that title</p>
 		{/if}
 	</section>
 {/if}
@@ -40,9 +40,6 @@
 <TabAll searchInput={tabSearchInput} />
 
 <style>
-	.search__section {
-	}
-
 	.search {
 		display: flex;
 		flex-direction: row;
@@ -67,5 +64,10 @@
 
 	.search__input {
 		width: 100%;
+	}
+
+	.notab {
+		font-size: var(--step-0);
+		color: var(--copy-light);
 	}
 </style>

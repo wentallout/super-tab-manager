@@ -1,11 +1,11 @@
 {
 	"name": "Super Tab Manager",
-	"description": "Most powerful browser tab manager ever created. Contact/Bug Report: wentallout@gmail.com",
+	"description": "Find your tabs. Remove duplicated or harmful tabs. Clean up your life. Most powerful browser tab manager ever created. Contact/Bug Report: wentallout@gmail.com",
 	"version": "1.0.2",
 	"permissions": ["tabs", "activeTab", "tabGroups", "favicon", "bookmarks", "system.memory"],
 	"manifest_version": 3,
 	"action": {
-		"default_title": "Super Tab Manager - Clean Your Messy Tab 2024",
+		"default_title": "Super Tab Manager - Open Menu",
 		"default_icon": "icon128.png",
 		"default_popup": "index.html"
 	},
