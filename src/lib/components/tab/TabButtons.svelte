@@ -8,6 +8,7 @@
 	<button class="btn--small btn--bookmark" on:click={() => bookmarkTabById(tab.id)}>
 		<Bookmark height="24" width="24" />
 	</button>
+
 	<button class="btn--small btn--error" on:click={() => closeTabById(tab.id)}>
 		<Close height="24" width="24" />
 	</button>

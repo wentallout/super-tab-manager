@@ -8,7 +8,6 @@
 }
 
 body {
-	line-height: 150%;
 	font-family: 'Inter', system-ui, sans-serif;
 }
 
@@ -29,3 +28,5 @@ h3 {
 	margin-bottom: var(--space-xs);
 	font-size: var(--step-1);
 }
+
+

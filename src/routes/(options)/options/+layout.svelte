@@ -2,7 +2,7 @@
 	import '$lib/styles/global.css';
 </script>
 
-<h1>Options</h1>
-<main>
+<main class="g-pad">
+	<h1>Options</h1>
 	<slot />
 </main>

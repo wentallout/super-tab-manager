@@ -37,9 +37,8 @@
 		position: sticky;
 		top: 0;
 		left: 0;
-		z-index: 9999;
+		z-index: var(--z-index-max);
 		background-color: var(--background);
-		border-bottom: 1px solid var(--border);
 	}
 
 	.nav {
@@ -67,6 +66,9 @@
 				padding: var(--space-2xs) var(--space-xs);
 				flex-grow: 1;
 				transition: all ease 0.3s;
+
+				border-bottom: 1px solid var(--border);
+				border-radius: var(--border-radius-3);
 
 				&:hover {
 					color: var(--primary-light);

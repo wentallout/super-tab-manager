@@ -28,9 +28,7 @@
 		--gap: var(--space-xs);
 		display: grid;
 		grid-gap: var(--gap);
-
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), var(--min)));
-		overflow: hidden;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
 
 		& .tab__item {
 			display: flex;

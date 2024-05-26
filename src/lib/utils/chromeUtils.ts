@@ -1,8 +1,7 @@
 import { toast } from 'svelte-sonner';
 
 export async function getTabInfo(tabId: number) {
-	const tabInfo = await chrome.tabs.get(tabId);
-	return tabInfo;
+	return await chrome.tabs.get(tabId);
 }
 
 export async function focusTabById(tabId: number | undefined) {

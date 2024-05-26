@@ -12,3 +12,5 @@ export const WEBSITE: string = 'https://wentallout.io.vn';
 export const EMAIL: string = 'mailto:wentallout@gmail.com?subject=BugReportBeterTabCleaner';
 
 export const GITHUB: string = 'https://github.com/wentallout';
+
+export const KOFI: string = 'https://ko-fi.com/wentallout';

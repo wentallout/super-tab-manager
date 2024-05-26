@@ -87,7 +87,7 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		z-index: 99;
+		z-index: var(--z-index-max);
 		background-color: var(--background);
 		padding: 4px;
 		border-radius: 100%;

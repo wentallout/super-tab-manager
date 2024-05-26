@@ -27,43 +27,48 @@
 	});
 </script>
 
-<div class="common-buttons g-pad">
-	<button class="btn btn--primary" on:click={groupTabsByAllDomains}>
-		<TabGroup width="24" height="24" />
-		Group Tabs By Domain
-	</button>
-</div>
+<div class="group-wrapper">
+	<div class="common-buttons">
+		<button class="btn btn--primary" on:click={groupTabsByAllDomains}>
+			<TabGroup height="24" width="24" />
+			Group Tabs By Domain
+		</button>
+	</div>
 
-<div class="common-buttons g-pad">
-	<button
-		class="btn btn--error"
-		disabled={$duplicatedTabCountStore === 0}
-		on:click={closeDuplicatedTabs}>
-		<Recycling height="24" width="24" />
-		Close Duplicated
-		<Badge count={$duplicatedTabCountStore} />
-	</button>
-	<button class="btn btn--error" disabled={$nsfwTabCountStore === 0} on:click={closeNsfwTabs}>
-		<Danger height="24" width="24" />
-		Close NSFW
-		<Badge count={$nsfwTabCountStore} />
-	</button>
-	<button class="btn btn--error" disabled={$socialTabCountStore === 0} on:click={closeSocialTabs}>
-		<SocialIcon />
-		Close Social
-		<Badge count={$socialTabCountStore} />
-	</button>
+	<div class="common-buttons">
+		<button
+			class="btn btn--error"
+			disabled={$duplicatedTabCountStore === 0}
+			on:click={closeDuplicatedTabs}>
+			<Recycling height="24" width="24" />
+			Close Duplicated
+			<Badge count={$duplicatedTabCountStore} />
+		</button>
+
+		<button class="btn btn--error" disabled={$nsfwTabCountStore === 0} on:click={closeNsfwTabs}>
+			<Danger height="24" width="24" />
+			Close NSFW
+			<Badge count={$nsfwTabCountStore} />
+		</button>
+		<button class="btn btn--error" disabled={$socialTabCountStore === 0} on:click={closeSocialTabs}>
+			<SocialIcon />
+			Close Social
+			<Badge count={$socialTabCountStore} />
+		</button>
+	</div>
 </div>
 
 <style>
+	.group-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+	}
 	.common-buttons {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: var(--space-s);
-	}
-
-	.common-buttons:has(button:not(:disabled)) {
-		border-bottom: 1px solid var(--border);
+		padding-inline: var(--space-xs);
 	}
 </style>

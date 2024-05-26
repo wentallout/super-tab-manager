@@ -15,10 +15,12 @@ import { formatTabDomain } from '$lib/utils/urlUtils';
 
 export const tabListStore = writable<chrome.tabs.Tab[]>([]);
 export const tabListSearchResultStore = writable<chrome.tabs.Tab[]>([]);
+export const duplicatedTabsStore = writable<chrome.tabs.Tab[]>([]);
 
 export async function getAllTabs() {
 	const tabs = await chrome.tabs.query({});
 	tabListStore.set(tabs);
+	setDuplicatedTabsStore(tabs);
 }
 
 export async function closeDuplicatedTabs() {
@@ -61,7 +63,7 @@ export async function groupTabsByOneDomain(domain: string) {
 			throw new Error(`No tabs found for domain: ${domain}`);
 		}
 
-		const groupId = await chrome.tabs.group({ tabIds });
+		const groupId = chrome.tabs.group({ tabIds });
 		await chrome.tabGroups.update(groupId, { title: domain, collapsed: true });
 
 		toast.success(`Grouped ${domain} tab.`);
@@ -215,5 +217,47 @@ export async function unpinTabById(tabId: number | undefined) {
 		} catch (error) {
 			toast.error(`Error unpinning`);
 		}
+	}
+}
+
+export async function setDuplicatedTabsStore(tabs: chrome.tabs.Tab[]) {
+	const tabTitlesMap = new Map<string, number>();
+
+	tabs.forEach((tab) => {
+		const title = tab.title;
+		if (title) {
+			tabTitlesMap.set(title, (tabTitlesMap.get(title) || 0) + 1);
+		}
+	});
+
+	const duplicatedTabTitles = Array.from(tabTitlesMap.entries())
+		.filter(([_, count]) => count > 1)
+		.map(([title]) => title);
+
+	const duplicatedTabs = tabs.filter((tab) => duplicatedTabTitles.includes(tab.title!));
+	duplicatedTabsStore.set(duplicatedTabs);
+}
+
+export async function getIdOfCurrentTab() {
+	const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+	return tab.id;
+}
+
+export async function moveCurrentTabToIncognito() {
+	let currentId = await getIdOfCurrentTab();
+	let currentTabInfo;
+
+	if (currentId) {
+		currentTabInfo = await getTabInfo(currentId);
+	}
+
+	if (currentTabInfo) {
+		chrome.windows.create({
+			url: currentTabInfo.url,
+			incognito: true,
+			focused: true,
+			state: 'maximized'
+		});
+		// chrome.tabs.remove(currentTab.id);
 	}
 }

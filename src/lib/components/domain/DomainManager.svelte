@@ -26,7 +26,7 @@
 							on:click={() => {
 								groupTabsByOneDomain(domain.title);
 							}}>
-							<TabGroup />
+							<TabGroup height="24" width="24" />
 							Group
 						</button>
 
@@ -35,7 +35,7 @@
 							on:click={() => {
 								closeTabsByDomain(domain.title);
 							}}>
-							<DeleteForever />
+							<DeleteForever height="24" width="24" />
 							Close
 						</button>
 					</div>
@@ -51,7 +51,6 @@
 	.domain {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-m);
 
 		& .domain__item {
 			border-radius: var(--border-radius-1);
@@ -64,6 +63,7 @@
 	}
 
 	.btn-group {
-		margin-left: auto;
+		align-items: center;
+		justify-self: end;
 	}
 </style>

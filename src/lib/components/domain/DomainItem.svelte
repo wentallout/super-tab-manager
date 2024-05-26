@@ -16,16 +16,6 @@
 </button>
 
 <style>
-	.truncate {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 1; /* number of lines to show */
-		line-clamp: 1;
-		-webkit-box-orient: vertical;
-		max-width: 65ch;
-	}
-
 	.domain {
 		display: flex;
 		flex-direction: row;
@@ -34,11 +24,17 @@
 		height: 32px;
 		gap: var(--space-xs);
 		flex-grow: 1;
+		padding-block: var(--space-xs);
 
 		& .domain__favicon {
 			aspect-ratio: 1;
 			height: 100%;
 			width: auto;
+		}
+
+		&:hover {
+			background-color: var(--foreground);
+			cursor: pointer;
 		}
 	}
 
@@ -58,10 +54,16 @@
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
+		max-width: 460px;
+		overflow: hidden;
+	}
 
-		&:hover {
-			background-color: var(--foreground);
-			cursor: pointer;
-		}
+	.truncate {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1; /* number of lines to show */
+		line-clamp: 1;
+		-webkit-box-orient: vertical;
 	}
 </style>

@@ -1,0 +1,96 @@
+.btn {
+	/* flex stuff */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2xs);
+	flex-grow: 0;
+	flex-shrink: 0;
+	/* --- */
+
+	position: relative;
+	transition: all 0.3s ease;
+	padding: var(--space-2xs) var(--space-xs);
+
+	/* text */
+	font-size: var(--step-0);
+
+	font-weight: 600;
+	/* --- */
+
+	border-radius: var(--border-radius-1);
+	border: 1px solid transparent;
+
+	cursor: pointer;
+
+	&:hover {
+		filter: brightness(105%);
+	}
+
+	&:active {
+		filter: brightness(90%);
+	}
+}
+
+.btn--small {
+	display: flex;
+	gap: var(--space-2xs);
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	min-height: 24px;
+
+	padding: var(--space-3xs) var(--space-xs);
+
+	border: 1px solid transparent;
+	border-radius: var(--border-radius-1);
+
+	/* TYPOGRAPHY */
+	font-size: var(--step--1);
+	font-weight: 500;
+	/* --- */
+
+	transition: ease-in-out 0.3s;
+
+	cursor: pointer;
+	color: black;
+
+	&:hover {
+		filter: brightness(105%);
+	}
+
+	&:active {
+		filter: brightness(90%);
+	}
+}
+
+.btn--primary {
+	color: black;
+	background-color: var(--primary);
+}
+
+.btn--error {
+	background-color: transparent;
+	color: var(--error);
+	border-color: var(--error);
+
+	&:hover {
+		background-color: var(--error);
+		color: var(--background);
+	}
+}
+
+.btn--outline {
+	background-color: transparent;
+	border-color: var(--secondary);
+	color: var(--secondary);
+
+	&:hover {
+		background-color: var(--secondary);
+		color: var(--background);
+	}
+}

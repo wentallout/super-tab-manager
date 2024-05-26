@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { focusTabById, getTabInfo } from '$lib/utils/chromeUtils';
 	import { onMount } from 'svelte';
-	import TabButtons from '$components/tab/TabButtons.svelte';
-	import MemoryViewer from '$components/layout/MemoryViewer.svelte';
-	import { bookmarkTabById, closeTabById } from '$stores/tabStore';
-	import { Bookmark, Close } from '$lib/icons';
 
-	async function getIdOfCurrentTab() {
-		const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-		return tab.id;
-	}
+	import MemoryViewer from '$components/layout/MemoryViewer.svelte';
+	import {
+		bookmarkTabById,
+		closeTabById,
+		getIdOfCurrentTab,
+		moveCurrentTabToIncognito
+	} from '$stores/tabStore';
+	import { Bookmark, Close } from '$lib/icons';
+	import IncognitoIcon from '$lib/icons/IncognitoIcon.svelte';
 
 	let currentId: number | undefined;
 	let currentTabInfo: chrome.tabs.Tab;
@@ -41,6 +42,9 @@
 
 			<div class="tab__btns">
 				{#if currentTabInfo.id}
+					<button class="btn--small" on:click={() => moveCurrentTabToIncognito()}>
+						<IncognitoIcon />
+					</button>
 					<button class="btn--small" on:click={() => bookmarkTabById(currentTabInfo.id)}>
 						<Bookmark height="24" width="24" />
 					</button>
@@ -60,6 +64,7 @@
 		gap: var(--space-2xs);
 		padding: 0 var(--space-s);
 		border-bottom: 1px solid var(--border);
+		margin-bottom: var(--space-s);
 	}
 
 	.tab__item {
@@ -74,10 +79,10 @@
 	}
 
 	.tab__title {
-		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		transition: ease-out 0.3s;
+		white-space: nowrap;
+		max-width: 65ch;
 	}
 
 	.tab__title:hover {
@@ -90,7 +95,11 @@
 		color: var(--copy);
 
 		& .btn--small {
-			color: white;
+			color: var(--copy);
+
+			&:hover {
+				background-color: var(--foreground);
+			}
 		}
 	}
 
@@ -102,7 +111,6 @@
 		gap: var(--space-2xs);
 		color: var(--copy);
 		flex-grow: 0;
-		min-width: 65ch;
 
 		& .tab__favicon {
 			flex-shrink: 0;

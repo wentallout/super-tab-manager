@@ -13,12 +13,12 @@
 
 <section>
 	<div class="search">
-		<Search height="24" width="24" />
+		<Search style="margin-left:8px" height="24" width="24" />
 		<input
 			class="search__input"
-			placeholder="search tab..."
+			placeholder="Search tabs"
 			spellcheck="false"
-			type="text"
+			type="search"
 			bind:value={tabSearchInput}
 			on:input={() => searchTabs(tabSearchInput)} />
 	</div>
@@ -28,11 +28,11 @@
 	<section class="search__section">
 		<h3 class="search__heading">Search Result</h3>
 		{#if $tabListSearchResultStore.length > 0}
-			<div class="search__result" transition:fade>
+			<div class="search__result" in:fade>
 				<TabItemList tabList={$tabListSearchResultStore} />
 			</div>
 		{:else}
-			<p class="notab" transition:fade>No tabs with that title</p>
+			<p class="notab">No tabs with that title</p>
 		{/if}
 	</section>
 {/if}
@@ -46,6 +46,8 @@
 		align-items: center;
 		gap: var(--space-2xs);
 		margin-bottom: var(--space-m);
+		border: 1px solid var(--border);
+		border-radius: var(--border-radius-3);
 	}
 
 	.search__heading {
@@ -58,7 +60,8 @@
 		--gap: var(--space-xs);
 		display: grid;
 		grid-gap: var(--gap);
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), var(--min)));
+
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
 		overflow: hidden;
 	}
 

@@ -17,12 +17,10 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-
-		height: 16px;
+		height: fit-content;
 		background-color: var(--error-content);
 		border-radius: var(--border-radius-1);
-		padding: 1px 3px;
-		aspect-ratio: 1/1;
+		padding: 2px 4px;
 	}
 
 	.badge__counter {
@@ -31,6 +29,7 @@
 		color: #fff;
 		font-size: var(--step--1);
 		font-family: monospace;
-		font-weight: 400;
+		font-weight: 600;
+		line-height: initial;
 	}
 </style>
