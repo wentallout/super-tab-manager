@@ -16,7 +16,7 @@
 
 <section>
 	{#if $domainsStore.length > 0}
-		<div class="domain">
+		<div class="domains">
 			{#each $domainsStore as domain (domain.title)}
 				<div class="domain__item" animate:flip={{ duration: 250, easing: quintOut }}>
 					<DomainItem {domain} />
@@ -48,17 +48,19 @@
 </section>
 
 <style>
-	.domain {
+	.domains {
 		display: flex;
 		flex-direction: column;
 
 		& .domain__item {
 			border-radius: var(--border-radius-1);
 			transition: 0.3s;
-			display: flex;
-			flex-direction: row;
+
 			gap: var(--space-m);
 			width: 100%;
+
+			display: grid;
+			grid-template-columns: 1fr 192px;
 		}
 	}
 

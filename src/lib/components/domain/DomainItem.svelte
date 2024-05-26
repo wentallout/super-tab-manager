@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Domain } from '$lib/types/Domain';
+
 	import { navigateToFirstTabOfDomain } from '$stores/domainStore';
 	export let domain: Domain;
 </script>
@@ -25,6 +26,7 @@
 		gap: var(--space-xs);
 		flex-grow: 1;
 		padding-block: var(--space-xs);
+		padding-inline: var(--space-2xs);
 
 		& .domain__favicon {
 			aspect-ratio: 1;
