@@ -45,32 +45,32 @@ export async function groupTabsByOneDomain(domain: string) {
 		throw new Error('Domain cannot be empty');
 	}
 
-	try {
-		const tabs: chrome.tabs.Tab[] = await chrome.tabs.query({});
+	const tabs: chrome.tabs.Tab[] = await chrome.tabs.query({});
 
-		if (!tabs.length) {
-			throw new Error('No tabs found');
-		}
-
-		const tabIds = tabs.reduce((result, tab) => {
-			if (tab.url?.includes(domain)) {
-				result.push(tab.id as number);
-			}
-			return result;
-		}, [] as number[]);
-
-		if (!tabIds.length) {
-			throw new Error(`No tabs found for domain: ${domain}`);
-		}
-
-		const groupId = chrome.tabs.group({ tabIds });
-		await chrome.tabGroups.update(groupId, { title: domain, collapsed: true });
-
-		toast.success(`Grouped ${domain} tab.`);
-		tabListStore.set(tabs);
-	} catch (error) {
-		toast.error(`Grouping tabs failed`);
+	if (!tabs.length) {
+		throw new Error('No tabs found');
 	}
+
+	const tabIds = tabs.reduce((result, tab) => {
+		if (tab.url?.includes(domain)) {
+			result.push(tab.id as number);
+		}
+		return result;
+	}, [] as number[]);
+
+	if (!tabIds.length) {
+		toast.error(`No tabs found for domain: ${domain}`);
+		throw new Error(`No tabs found for domain: ${domain}`);
+	}
+
+	const formattedDomain = domain.replace(/^www\./, '');
+
+	chrome.tabs.group({ tabIds }).then((groupId) => {
+		chrome.tabGroups.update(groupId, { title: formattedDomain, collapsed: true });
+	});
+
+	toast.success(`Grouped ${domain} tab.`);
+	tabListStore.set(tabs);
 }
 
 export async function closeTabsByDomain(domain: string) {
@@ -178,15 +178,19 @@ export async function groupTabsByAllDomains() {
 
 	const domainsMap = new Map<string, number>();
 	tabs.forEach((tab) => {
-		const url = new URL(tab.url!);
-		const hostname = url.hostname;
-		domainsMap.set(hostname, (domainsMap.get(hostname) || 0) + 1);
+		try {
+			const url = new URL(tab.url!);
+			const hostname = url.hostname;
+			domainsMap.set(hostname, (domainsMap.get(hostname) || 0) + 1);
+		} catch (error) {
+			console.error(`Invalid URL: ${tab.url}`);
+		}
 	});
 
 	const uniqueDomains = Array.from(domainsMap.entries())
 		.filter(([_, value]) => value > 1)
 		.map(async ([key, value]) => {
-			const favicon = await getFaviconByUrl(`https://${key}`);
+			const favicon = getFaviconByUrl(`https://${key}`);
 			return { title: key, numOfAppearance: value, favicon };
 		});
 	const resolvedUniqueDomains = await Promise.all(uniqueDomains);

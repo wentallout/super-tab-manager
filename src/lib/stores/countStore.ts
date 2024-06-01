@@ -30,27 +30,11 @@ export async function getCountNsfwTabs(): Promise<number> {
 	return count;
 }
 
-// export async function getCountSocialTabs(): Promise<number> {
-// 	let count: number = 0;
-// 	const socialList = getSocialList();
-
-// 	const tabs = await chrome.tabs.query({});
-
-// 	tabs.forEach((tab) => {
-// 		const tabDomain = formatTabDomain(tab.url!);
-// 		if (socialList.includes(tabDomain)) {
-// 			count += 1;
-// 		}
-// 	});
-
-// 	return count;
-// }
-
 export async function getCountSocialTabs(): Promise<number> {
-    const socialList = getSocialList();
-    const tabs = await chrome.tabs.query({});
-    return tabs.reduce((count, tab) => {
-        const tabDomain = formatTabDomain(tab.url!);
-        return socialList.has(tabDomain) ? count + 1 : count;
-    }, 0);
+	const socialList = getSocialList();
+	const tabs = await chrome.tabs.query({});
+	return tabs.reduce((count, tab) => {
+		const tabDomain = formatTabDomain(tab.url!);
+		return socialList.has(tabDomain) ? count + 1 : count;
+	}, 0);
 }

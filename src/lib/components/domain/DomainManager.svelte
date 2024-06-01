@@ -43,7 +43,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="">nothing</div>
+		<div class="">No domain found</div>
 	{/if}
 </section>
 

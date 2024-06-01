@@ -21,11 +21,12 @@ export async function getAllDomains() {
 
 	if (domainsMap) {
 		const uniqueDomains = Array.from(domainsMap.entries()).map(async ([key, value]) => {
-			const favicon = await getFaviconByUrl(`https://${key}`);
+			const favicon = getFaviconByUrl(`https://${key}`);
 			return { title: key, numOfAppearance: value, favicon };
 		});
 		const resolvedUniqueDomains = await Promise.all(uniqueDomains);
 		domainsStore.set(resolvedUniqueDomains);
+		console.log(resolvedUniqueDomains);
 	}
 }
 

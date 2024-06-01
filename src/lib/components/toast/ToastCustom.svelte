@@ -8,7 +8,6 @@
 </script>
 
 <Toaster
-	closeButton
 	duration={TOASTER_DURATION}
 	position="bottom-right"
 	toastOptions={{
@@ -25,6 +24,9 @@
 	.custom-toast {
 		font-size: var(--step-0) !important;
 		background-color: var(--background);
+		color: var(--copy);
+
+		border: 1px solid var(--border);
 		&[data-type='error'] {
 			color: var(--error-content) !important;
 		}

@@ -27,7 +27,7 @@
 		"@typescript-eslint/parser": "^6.21.0",
 		"autoprefixer": "^10.4.19",
 		"browserslist": "^4.23.0",
-		"chrome-types": "^0.1.285",
+		"chrome-types": "^0.1.286",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.39.0",
@@ -43,7 +43,7 @@
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.5",
 		"unplugin-icons": "^0.18.5",
-		"vite": "^5.2.11",
+		"vite": "^5.2.12",
 		"vitest": "^1.6.0"
 	},
 	"type": "module",

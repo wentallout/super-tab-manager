@@ -40,20 +40,27 @@
 
 <style>
 	.memory {
-		font-size: var(--step-0);
+		/* FLEX */
 		display: flex;
 		flex-direction: row;
 		gap: var(--space-2xs);
+		/* --- */
+
 		padding: var(--space-2xs) var(--space-s);
 		border-bottom: 1px solid var(--border);
 
+		/* POSITION */
 		position: fixed;
 		bottom: 0;
 		left: 0;
+		/* --- */
+
 		z-index: var(--z-index-max);
+		font-size: var(--step--1);
 
 		background-color: #00000070;
 		transition: background-color 0.3s linear;
+		pointer-events: none;
 
 		& .memory__title {
 			display: flex;

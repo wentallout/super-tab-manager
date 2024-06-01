@@ -17,7 +17,7 @@
 		{#if $tabListStore}
 			<TabItemList tabList={$tabListStore} />
 		{:else}
-			<div>Nothing here</div>
+			<div>No tab found</div>
 		{/if}
 	</div>
 {/if}

@@ -68,7 +68,9 @@
 				transition: all ease 0.3s;
 
 				border-bottom: 1px solid var(--border);
-				border-radius: var(--border-radius-3);
+
+				border-bottom-right-radius: var(--border-radius-3);
+				border-bottom-left-radius: var(--border-radius-3);
 
 				&:hover {
 					color: var(--primary-light);
