@@ -3,13 +3,14 @@
 		closeDuplicatedTabs,
 		closeNsfwTabs,
 		closeSocialTabs,
-		groupTabsByAllDomains
+		groupTabsByAllDomains,
+		ungroupAllTabs
 	} from '$stores/tabStore';
 	import { onMount } from 'svelte';
 
 	import Badge from '$lib/components/badge/Badge.svelte';
 
-	import { Recycling, Danger, SocialIcon, TabGroup } from '$lib/icons.ts';
+	import { Recycling, Danger, SocialIcon, TabGroup, ArrowsOutward } from '$lib/icons.ts';
 
 	import {
 		getCountDuplicatedTabs,
@@ -33,6 +34,10 @@
 			<TabGroup height="24" width="24" />
 			Group Tabs By Domain
 		</button>
+
+		<button class="btn btn--error" on:click={ungroupAllTabs}>
+			<ArrowsOutward />
+			Ungroup All Tabs</button>
 	</div>
 
 	<div class="common-buttons">

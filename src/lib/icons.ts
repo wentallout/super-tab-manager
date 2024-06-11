@@ -15,6 +15,7 @@ import Close from '~icons/material-symbols-light/close-rounded';
 import Bookmark from '~icons/material-symbols-light/bookmark-add-outline-rounded';
 import Keep from '~icons/material-symbols-light/keep-outline-rounded';
 import KeepOff from '~icons/material-symbols-light/keep-off-outline-rounded';
+import ArrowsOutward from '~icons/material-symbols-light/arrows-outward-rounded';
 
 export {
 	Search,
@@ -33,5 +34,6 @@ export {
 	Bookmark,
 	DeleteForever,
 	Keep,
-	KeepOff
+	KeepOff,
+	ArrowsOutward
 };

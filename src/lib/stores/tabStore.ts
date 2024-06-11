@@ -17,6 +17,22 @@ export const tabListStore = writable<chrome.tabs.Tab[]>([]);
 export const tabListSearchResultStore = writable<chrome.tabs.Tab[]>([]);
 export const duplicatedTabsStore = writable<chrome.tabs.Tab[]>([]);
 
+export async function ungroupAllTabs() {
+	const groups = await chrome.tabGroups.query({});
+	const groupIds = groups.map((group) => group.id);
+
+	const tabs = await chrome.tabs.query({});
+	const groupedTabs = tabs.filter((tab) => groupIds.includes(tab.groupId));
+
+	for (const tab of groupedTabs) {
+		try {
+			chrome.tabs.ungroup(tab.id);
+		} catch (error) {
+			console.error(`Failed to ungroup tab ${tab.id}: ${error}`);
+		}
+	}
+}
+
 export async function getAllTabs() {
 	const tabs = await chrome.tabs.query({});
 	tabListStore.set(tabs);
@@ -85,12 +101,7 @@ export async function closeTabsByDomain(domain: string) {
 	domainsStore.update((domains) => domains.filter((d) => !d.title.includes(domain)));
 }
 
-/**
- * Closes a tab by its ID.
- * @param {number} tabId - The ID of the tab to close.
- * @returns {Promise<void>} - A promise that resolves once the tab is closed.
- */
-export async function closeTabById(tabId: number | undefined) {
+export async function closeTabById(tabId: number) {
 	const tab = await getTabInfo(tabId);
 	chrome.tabs.remove(tabId, async () => {
 		tabListStore.update((tabs) => tabs.filter((tab) => tab.id !== tabId));
@@ -101,7 +112,7 @@ export async function closeTabById(tabId: number | undefined) {
 	});
 }
 
-export async function bookmarkTabById(tabId: number | undefined) {
+export async function bookmarkTabById(tabId: number) {
 	try {
 		const tabInfo = await getTabInfo(tabId);
 
@@ -200,7 +211,7 @@ export async function groupTabsByAllDomains() {
 	});
 }
 
-export async function pinTabById(tabId: number | undefined) {
+export async function pinTabById(tabId: number) {
 	if (tabId) {
 		try {
 			await chrome.tabs.update(tabId, { pinned: true });
@@ -212,7 +223,7 @@ export async function pinTabById(tabId: number | undefined) {
 	}
 }
 
-export async function unpinTabById(tabId: number | undefined) {
+export async function unpinTabById(tabId: number) {
 	if (tabId) {
 		try {
 			await chrome.tabs.update(tabId, { pinned: false });
@@ -248,7 +259,7 @@ export async function getIdOfCurrentTab() {
 }
 
 export async function moveCurrentTabToIncognito() {
-	let currentId = await getIdOfCurrentTab();
+	const currentId = await getIdOfCurrentTab();
 	let currentTabInfo;
 
 	if (currentId) {
