@@ -2,7 +2,15 @@
 	"name": "Super Tab Manager",
 	"description": "Most powerful browser tab manager ever created. Contact: wentallout@gmail.com",
 	"version": "1.0.5",
-	"permissions": ["tabs", "activeTab", "tabGroups", "favicon", "bookmarks", "system.memory"],
+	"permissions": [
+		"tabs",
+		"activeTab",
+		"tabGroups",
+		"favicon",
+		"bookmarks",
+		"system.memory",
+		"scripting"
+	],
 	"manifest_version": 3,
 	"action": {
 		"default_title": "Super Tab Manager - Open Menu",

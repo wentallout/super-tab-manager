@@ -10,7 +10,14 @@
 
 	import Badge from '$lib/components/badge/Badge.svelte';
 
-	import { Recycling, Danger, SocialIcon, TabGroup, ArrowsOutward } from '$lib/icons.ts';
+	import {
+		Recycling,
+		Danger,
+		SocialIcon,
+		TabGroup,
+		ArrowsOutward,
+		PictureInPicture
+	} from '$lib/icons.ts';
 
 	import {
 		getCountDuplicatedTabs,
@@ -20,6 +27,7 @@
 		socialTabCountStore,
 		getCountSocialTabs
 	} from '$stores/countStore';
+	import { togglePictureInPicture } from '$lib/utils/pictureInPictureUtils';
 
 	onMount(async () => {
 		duplicatedTabCountStore.set(await getCountDuplicatedTabs());
@@ -36,8 +44,13 @@
 		</button>
 
 		<button class="btn btn--error" on:click={ungroupAllTabs}>
-			<ArrowsOutward />
+			<ArrowsOutward height="24" width="24" />
 			Ungroup All Tabs</button>
+
+		<button class="btn btn--error" on:click={togglePictureInPicture}>
+			<PictureInPicture height="24" width="24" />
+			Picture in Picture
+		</button>
 	</div>
 
 	<div class="common-buttons">

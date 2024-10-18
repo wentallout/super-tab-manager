@@ -17,6 +17,8 @@ import Keep from '~icons/material-symbols-light/keep-outline-rounded';
 import KeepOff from '~icons/material-symbols-light/keep-off-outline-rounded';
 import ArrowsOutward from '~icons/material-symbols-light/arrows-outward-rounded';
 
+import PictureInPicture from '~icons/material-symbols-light/picture-in-picture-alt-outline-rounded';
+
 export {
 	Search,
 	Globe,
@@ -35,5 +37,6 @@ export {
 	DeleteForever,
 	Keep,
 	KeepOff,
-	ArrowsOutward
+	ArrowsOutward,
+	PictureInPicture
 };

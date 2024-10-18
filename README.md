@@ -1,4 +1,5 @@
 # Super Tab Manager
+
 <a href="https://www.producthunt.com/posts/super-tab-manager?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-super&#0045;tab&#0045;manager" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=440199&theme=light" alt="Super&#0032;Tab&#0032;Manager - You&#0032;opened&#0032;too&#0032;many&#0032;browser&#0032;tabs&#0063;&#0032;This&#0032;extension&#0032;is&#0032;for&#0032;you | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 ![thumbnail](https://github.com/wentallout/super-tab-manager/assets/76118931/dd8b9dde-7abf-4ce3-bc9a-194eb90ba1df)
@@ -9,7 +10,7 @@ A chrome extension that helps you clean and manage your messy tabs.
 
 - Lightweight, performant extension that won't slow down your work.
 - Dual view: see opened Tabs and Domains separately.
-- Group Tabs By Domains: instantly tidy your messy tabs by grouping them into Domains. 
+- Group Tabs By Domains: instantly tidy your messy tabs by grouping them based on their domains.
 - Close Duplicated: clean up your tabs by removing unnecessary duplicates.
 - Close NSFW: remove unsafe tabs from your browser, saves you from trouble.
 - Close Social: remove all social media tabs from your browser, allows you to focus on your work.
@@ -25,10 +26,11 @@ A chrome extension that helps you clean and manage your messy tabs.
 
 - Group tabs using user-defined category
 - Archive tabs
+- Picture-in-picture mode
 
 ## What I used
 
-- Semantic HTML, BEM CSS, TypeScript
+- HTML, CSS, TypeScript
 - [FrontEnd - SvelteKit](https://kit.svelte.dev/)
 - BackEnd: not needed
 - [Icons - `unplugin-icons`](https://icon-sets.iconify.design/material-symbols-light/)

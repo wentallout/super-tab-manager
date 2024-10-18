@@ -200,15 +200,13 @@ export async function groupTabsByAllDomains() {
 
 	const uniqueDomains = Array.from(domainsMap.entries())
 		.filter(([_, value]) => value > 1)
-		.map(async ([key, value]) => {
-			const favicon = getFaviconByUrl(`https://${key}`);
-			return { title: key, numOfAppearance: value, favicon };
+		.map(([key, value]) => {
+			return { title: key, numOfAppearance: value };
 		});
-	const resolvedUniqueDomains = await Promise.all(uniqueDomains);
 
-	resolvedUniqueDomains.forEach((domain) => {
-		groupTabsByOneDomain(domain.title);
-	});
+	for (const domain of uniqueDomains) {
+		await groupTabsByOneDomain(domain.title);
+	}
 }
 
 export async function pinTabById(tabId: number) {
