@@ -1,7 +1,7 @@
 {
 	"name": "Super Tab Manager",
 	"description": "Most powerful browser tab manager ever created. Contact: wentallout@gmail.com",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"permissions": [
 		"tabs",
 		"activeTab",
