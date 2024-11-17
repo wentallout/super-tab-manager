@@ -36,57 +36,50 @@
 	});
 </script>
 
-<div class="group-wrapper">
-	<div class="common-buttons">
-		<button class="btn btn--primary" on:click={groupTabsByAllDomains}>
-			<TabGroup height="24" width="24" />
-			Group Tabs By Domain
-		</button>
+<div class="group-wrapper g-pad">
+	<button class="btn btn--primary" on:click={groupTabsByAllDomains}>
+		<TabGroup height="24" width="24" />
+		Group Tabs By Domain
+	</button>
 
-		<button class="btn btn--error" on:click={ungroupAllTabs}>
-			<ArrowsOutward height="24" width="24" />
-			Ungroup All Tabs</button>
+	<button class="btn btn--error" on:click={ungroupAllTabs}>
+		<ArrowsOutward height="24" width="24" />
+		Ungroup All Tabs</button>
 
-		<button class="btn btn--error" on:click={togglePictureInPicture}>
-			<PictureInPicture height="24" width="24" />
-			Picture in Picture
-		</button>
-	</div>
+	<button class="btn btn--error" on:click={togglePictureInPicture}>
+		<PictureInPicture height="24" width="24" />
+		Picture in Picture
+	</button>
 
-	<div class="common-buttons">
-		<button
-			class="btn btn--error"
-			disabled={$duplicatedTabCountStore === 0}
-			on:click={closeDuplicatedTabs}>
-			<Recycling height="24" width="24" />
-			Close Duplicated
-			<Badge count={$duplicatedTabCountStore} />
-		</button>
+	<button
+		class="btn btn--error"
+		disabled={$duplicatedTabCountStore === 0}
+		on:click={closeDuplicatedTabs}>
+		<Recycling height="24" width="24" />
+		Close Duplicated
+		<Badge count={$duplicatedTabCountStore} />
+	</button>
 
-		<button class="btn btn--error" disabled={$nsfwTabCountStore === 0} on:click={closeNsfwTabs}>
-			<Danger height="24" width="24" />
-			Close NSFW
-			<Badge count={$nsfwTabCountStore} />
-		</button>
-		<button class="btn btn--error" disabled={$socialTabCountStore === 0} on:click={closeSocialTabs}>
-			<SocialIcon />
-			Close Social
-			<Badge count={$socialTabCountStore} />
-		</button>
-	</div>
+	<button class="btn btn--error" disabled={$nsfwTabCountStore === 0} on:click={closeNsfwTabs}>
+		<Danger height="24" width="24" />
+		Close NSFW
+		<Badge count={$nsfwTabCountStore} />
+	</button>
+	<button class="btn btn--error" disabled={$socialTabCountStore === 0} on:click={closeSocialTabs}>
+		<SocialIcon />
+		Close Social
+		<Badge count={$socialTabCountStore} />
+	</button>
 </div>
 
 <style>
 	.group-wrapper {
-		display: flex;
-		flex-direction: column;
 		gap: var(--space-xs);
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
 	}
-	.common-buttons {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		gap: var(--space-s);
-		padding-inline: var(--space-xs);
+
+	.group-wrapper .btn {
+		justify-content: flex-start;
 	}
 </style>

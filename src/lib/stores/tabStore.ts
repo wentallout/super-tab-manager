@@ -209,7 +209,7 @@ export async function groupTabsByAllDomains() {
 	}
 }
 
-export async function pinTabById(tabId: number) {
+export async function pinTabById(tabId: number | undefined): Promise<void> {
 	if (tabId) {
 		try {
 			await chrome.tabs.update(tabId, { pinned: true });
@@ -221,7 +221,7 @@ export async function pinTabById(tabId: number) {
 	}
 }
 
-export async function unpinTabById(tabId: number) {
+export async function unpinTabById(tabId: number | undefined) {
 	if (tabId) {
 		try {
 			await chrome.tabs.update(tabId, { pinned: false });

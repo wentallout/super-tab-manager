@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { focusTabById } from '$lib/utils/chromeUtils';
 
-	import { flip } from 'svelte/animate';
 	import { quintOut } from 'svelte/easing';
 	import TabButtons from '$components/tab/TabButtons.svelte';
 
 	import { pinTabById, unpinTabById } from '$stores/tabStore';
 	import { Keep, KeepOff } from '$lib/icons';
+	import { fade } from 'svelte/transition';
 	export let tabList: chrome.tabs.Tab[];
 
 	$: tabList;
@@ -16,7 +16,7 @@
 	<div
 		class="tab__item"
 		class:tab--pinned={tab.pinned}
-		animate:flip={{ duration: 250, easing: quintOut }}>
+		transition:fade={{ duration: 250, easing: quintOut }}>
 		<button class="tab__info" on:click={() => focusTabById(tab.id)}>
 			<img class="tab__favicon" alt="favicon" height="16px" src={tab.favIconUrl} width="16px" />
 			<p class="tab__select truncate">
@@ -34,7 +34,9 @@
 			</button>
 		{/if}
 
-		<TabButtons {tab} />
+		<div class="tab__buttons">
+			<TabButtons {tab} />
+		</div>
 	</div>
 {/each}
 
@@ -93,8 +95,8 @@
 		border-radius: 100%;
 		display: none;
 		opacity: 0;
-		transition: opacity 0.3s linear;
 		transition: all linear 0.3s;
+		cursor: pointer;
 
 		&:hover {
 			filter: brightness(1.2);
@@ -105,5 +107,16 @@
 		display: block;
 		opacity: 1;
 		filter: brightness(1.2);
+	}
+
+	.tab__buttons {
+		max-height: 0;
+		transition: all 0.3s ease-in-out;
+		transition-delay: 250ms;
+	}
+
+	.tab__item:hover .tab__buttons {
+		max-height: 100px;
+		opacity: 1;
 	}
 </style>

@@ -6,6 +6,10 @@
 
 A chrome extension that helps you clean and manage your messy tabs.
 
+## Changelog
+
+- v1.0.7: make all buttons the same size, tab-related buttons only show up when that tab is hovered.
+
 ## 🏆 Features
 
 - Lightweight, performant extension that won't slow down your work.
