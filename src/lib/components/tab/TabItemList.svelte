@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { focusTabById } from '$lib/utils/chromeUtils';
 
-	import { quintOut } from 'svelte/easing';
 	import TabButtons from '$components/tab/TabButtons.svelte';
 
 	import { pinTabById, unpinTabById } from '$stores/tabStore';
@@ -13,10 +12,7 @@
 </script>
 
 {#each tabList as tab (tab.id)}
-	<div
-		class="tab__item"
-		class:tab--pinned={tab.pinned}
-		transition:fade={{ duration: 250, easing: quintOut }}>
+	<div class="tab__item" class:tab--pinned={tab.pinned} transition:fade={{ duration: 300 }}>
 		<button class="tab__info" on:click={() => focusTabById(tab.id)}>
 			<img class="tab__favicon" alt="favicon" height="16px" src={tab.favIconUrl} width="16px" />
 			<p class="tab__select truncate">

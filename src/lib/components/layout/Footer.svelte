@@ -49,7 +49,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: var(--space-2xs);
+		gap: var(--space-xs);
 	}
 
 	.footer__logo {

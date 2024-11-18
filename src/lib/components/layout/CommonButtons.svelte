@@ -77,6 +77,7 @@
 		gap: var(--space-xs);
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
+		grid-auto-flow: row; /* Ensures items only occupy one cell at a time */
 	}
 
 	.group-wrapper .btn {

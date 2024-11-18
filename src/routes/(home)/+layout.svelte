@@ -4,15 +4,24 @@
 	import CommonButtons from '$lib/components/layout/CommonButtons.svelte';
 	import Header from '$lib/components/layout/Header.svelte';
 	import ToastCustom from '$components/toast/ToastCustom.svelte';
+
+	import { fly } from 'svelte/transition';
+	export let data: any;
 </script>
 
 <ToastCustom />
 
 <Header />
 <CommonButtons />
-<main class="g-pad">
-	<slot />
-</main>
+
+{#key data.url}
+	<main
+		in:fly={{ x: -200, duration: 200, delay: 200 }}
+		out:fly={{ x: 200, duration: 200 }}
+		class="g-pad">
+		<slot />
+	</main>
+{/key}
 
 <Footer />
 

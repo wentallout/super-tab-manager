@@ -21,7 +21,7 @@
 
 <div class="memory">
 	<div class="memory__title">
-		<Memory height="16" width="16" />
+		<Memory />
 	</div>
 	{#if $memoryInfoStore}
 		<div class="memory__value" transition:fade>
@@ -46,7 +46,7 @@
 		gap: var(--space-2xs);
 		/* --- */
 
-		padding: var(--space-2xs) var(--space-s);
+		padding: var(--space-2xs) var(--space-2xs);
 		border-bottom: 1px solid var(--border);
 
 		/* POSITION */
