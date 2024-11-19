@@ -1,3 +1,5 @@
+import { toast } from 'svelte-sonner';
+
 export function togglePictureInPicture() {
 	// Find all tabs in the current window
 	chrome.tabs.query({ currentWindow: true }, async (tabs) => {
@@ -27,10 +29,10 @@ export function togglePictureInPicture() {
 						return;
 					}
 				} catch (error) {
-					console.error(`Failed to toggle Picture-in-Picture in tab ${tab.id}:`, error);
+					toast.error(`Failed to toggle Picture-in-Picture in tab ${tab.id}: ${error}`);
 				}
 			}
 		}
-		console.log('No playing media found to toggle Picture-in-Picture');
+		toast.error('No playing media found to toggle Picture-in-Picture');
 	});
 }

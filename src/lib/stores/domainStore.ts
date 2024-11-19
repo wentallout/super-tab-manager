@@ -29,11 +29,6 @@ export async function getAllDomains() {
 	}
 }
 
-/**
- * Navigates to the first tab of a specified domain.
- * @param domain - The domain to navigate to.
- * @returns A promise that resolves once the navigation is complete.
- */
 export async function navigateToFirstTabOfDomain(domain: string): Promise<void> {
 	const tabs = await chrome.tabs.query({});
 
