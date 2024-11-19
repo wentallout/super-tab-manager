@@ -4,16 +4,16 @@
 
 	import { Check, Error, Warning, Info } from '$lib/icons.ts';
 
-	import { TOASTER_DURATION, TOASTER_VISIBLE } from '$lib/constants/ui.ts';
+	import { TOASTER_DURATION_MS, TOASTER_VISIBLE_COUNT } from '$lib/constants/ui.ts';
 </script>
 
 <Toaster
-	duration={TOASTER_DURATION}
+	duration={TOASTER_DURATION_MS}
 	position="bottom-right"
 	toastOptions={{
 		class: 'custom-toast'
 	}}
-	visibleToasts={TOASTER_VISIBLE}>
+	visibleToasts={TOASTER_VISIBLE_COUNT}>
 	<Check color="white" slot="success-icon" />
 	<Error color="white" slot="error-icon" />
 	<Info color="white" slot="info-icon" />

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { APP_NAME, WEBSITE, EMAIL, GITHUB, KOFI } from '$lib/constants/ui';
+	import { APP_NAME, WEBSITE_URL, MAILTO_URL, GITHUB_URL, KOFI_URL } from '$lib/constants/ui';
 	import { onMount } from 'svelte';
 
 	let version: string;
@@ -15,13 +15,15 @@
 		<img class="footer__logo" alt="logo" src="icon32.png" />
 		<h1 class="footer__app">{APP_NAME} v{version}</h1>
 
-		<a class="footer__author" href={WEBSITE} target="_blank">Made by Khoa Nguyen (@wentallout) </a>
+		<a class="footer__author" href={WEBSITE_URL} target="_blank"
+			>Made by Khoa Nguyen (@wentallout)
+		</a>
 	</div>
 
 	<div class="footer__credit">
 		<div class="footer__links">
-			<a class="footer__link" href={KOFI} target="_blank">Donate</a>
-			<a class="footer__link" href={EMAIL} target="_blank">Bug Report</a>
+			<a class="footer__link" href={KOFI_URL} target="_blank">Donate</a>
+			<a class="footer__link" href={MAILTO_URL} target="_blank">Bug Report</a>
 		</div>
 	</div>
 </footer>

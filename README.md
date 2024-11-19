@@ -4,14 +4,18 @@
 
 ![image 28](https://github.com/user-attachments/assets/7e4a89f3-6c40-4117-8e30-252a2577327d)
 
-
 A chrome extension that helps you clean and manage your messy tabs.
 
-<a href="https://chromewebstore.google.com/detail/super-tab-manager/bkjlmdjfdppebnijgnhgfdnojfneppaa"><img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get uBlock Origin for Chromium"></a>
+<a href="https://chromewebstore.google.com/detail/super-tab-manager/bkjlmdjfdppebnijgnhgfdnojfneppaa">
+<img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get uBlock Origin for Chromium">
+</a>
 
 ## Changelog
 
 - v1.0.7: add smooth page transition, make all buttons the same size, tab-related buttons only show up when that tab is hovered. Fix bugs where it does not detect certain NSFW url if it has subdomains. Example: `la.utube` instead of `utube`.
+- v1.0.6: add Picture-in-Picture feature
+- v1.0.5: add Ungroup All feature
+- v1.0.4: improve UI
 
 ## 🏆 Features
 
@@ -45,13 +49,10 @@ A chrome extension that helps you clean and manage your messy tabs.
 
 ## Developing
 
-After doing `npm install` (or `pnpm install` or `yarn`), start a development server:
+Chrome extension cannot be run in development mode, it needs to be rebuilt and then you have to install that `build` folder into chrome extensions.
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm run build
 ```
 
 ## Credit
