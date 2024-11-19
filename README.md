@@ -2,7 +2,8 @@
 
 <a href="https://www.producthunt.com/posts/super-tab-manager?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-super&#0045;tab&#0045;manager" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=440199&theme=light" alt="Super&#0032;Tab&#0032;Manager - You&#0032;opened&#0032;too&#0032;many&#0032;browser&#0032;tabs&#0063;&#0032;This&#0032;extension&#0032;is&#0032;for&#0032;you | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-![image](https://github.com/user-attachments/assets/813379b1-b759-4119-a52a-c1e4d1dd9ada)
+![image 28](https://github.com/user-attachments/assets/7e4a89f3-6c40-4117-8e30-252a2577327d)
+
 
 A chrome extension that helps you clean and manage your messy tabs.
 
