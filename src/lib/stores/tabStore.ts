@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 import { domainsStore } from '$stores/domainStore';
-import { getFaviconByUrl } from '$lib/utils/faviconUtils';
+
 import { toast } from 'svelte-sonner';
 import {
 	duplicatedTabCountStore,
@@ -9,6 +9,7 @@ import {
 	nsfwTabCountStore,
 	socialTabCountStore
 } from '$stores/countStore';
+
 import { getNsfwList, getSocialList } from '$stores/filterListStore';
 import { getTabInfo } from '$lib/utils/chromeUtils';
 import { formatTabDomain } from '$lib/utils/urlUtils';
@@ -25,10 +26,12 @@ export async function ungroupAllTabs() {
 	const groupedTabs = tabs.filter((tab) => groupIds.includes(tab.groupId));
 
 	for (const tab of groupedTabs) {
-		try {
-			chrome.tabs.ungroup(tab.id);
-		} catch (error) {
-			console.error(`Failed to ungroup tab ${tab.id}: ${error}`);
+		if (tab.id !== undefined) {
+			try {
+				chrome.tabs.ungroup(tab.id);
+			} catch (error) {
+				console.error(`Failed to ungroup tab ${tab.id}: ${error}`);
+			}
 		}
 	}
 }
@@ -107,7 +110,7 @@ export async function closeTabById(tabId: number) {
 		tabListStore.update((tabs) => tabs.filter((tab) => tab.id !== tabId));
 		tabListSearchResultStore.update((tabs) => tabs.filter((tab) => tab.id !== tabId));
 	});
-	toast.success(`Closed tab.`, {
+	toast.success(`Closed tab`, {
 		description: `${tab.title}`
 	});
 }
@@ -206,6 +209,15 @@ export async function groupTabsByAllDomains() {
 
 	for (const domain of uniqueDomains) {
 		await groupTabsByOneDomain(domain.title);
+	}
+
+	// Get all tabs that are not in any group
+	const ungroupedTabs = await chrome.tabs.query({ groupId: -1 });
+
+	// If there are ungrouped tabs, create a new group called "Others"
+	if (ungroupedTabs.length > 0) {
+		const othersGroupId = await chrome.tabs.group({ tabIds: ungroupedTabs.map((tab) => tab.id) });
+		await chrome.tabGroups.update(othersGroupId, { title: 'Others', collapsed: true });
 	}
 }
 

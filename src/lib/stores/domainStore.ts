@@ -26,7 +26,6 @@ export async function getAllDomains() {
 		});
 		const resolvedUniqueDomains = await Promise.all(uniqueDomains);
 		domainsStore.set(resolvedUniqueDomains);
-		console.log(resolvedUniqueDomains);
 	}
 }
 

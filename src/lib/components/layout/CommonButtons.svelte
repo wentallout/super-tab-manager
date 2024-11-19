@@ -46,7 +46,7 @@
 		<ArrowsOutward height="24" width="24" />
 		Ungroup All Tabs</button>
 
-	<button class="btn btn--error" on:click={togglePictureInPicture}>
+	<button class="btn btn--outline" on:click={togglePictureInPicture}>
 		<PictureInPicture height="24" width="24" />
 		Picture in Picture
 	</button>

@@ -14,38 +14,32 @@
 		class: 'custom-toast'
 	}}
 	visibleToasts={TOASTER_VISIBLE}>
-	<Check slot="success-icon" />
-	<Error slot="error-icon" />
-	<Info slot="info-icon" />
-	<Warning slot="warning-icon" />
+	<Check color="white" slot="success-icon" />
+	<Error color="white" slot="error-icon" />
+	<Info color="white" slot="info-icon" />
+	<Warning color="white" slot="warning-icon" />
 </Toaster>
 
 <style global>
 	.custom-toast {
 		font-size: var(--step-0) !important;
 		background-color: var(--background);
-		color: var(--copy);
 
 		border: 1px solid var(--border);
-		&[data-type='error'] {
-			color: var(--error-content) !important;
+		&[data-type='error'] [data-title] {
+			color: var(--error-content);
 		}
 
-		&[data-type='success'] {
-			color: var(--success-content) !important;
+		&[data-type='success'] [data-title] {
+			color: var(--success-content);
 		}
 
-		&[data-type='warning'] {
-			color: var(--warning-content) !important;
+		&[data-type='warning'] [data-title] {
+			color: var(--warning-content);
 		}
 
-		&[data-type='info'] {
-			color: var(--info-content) !important;
-		}
-
-		&[data-description] {
-			color: var(--background) !important;
-			font-size: var(--step--1);
+		&[data-type='info'] [data-title] {
+			color: var(--info-content);
 		}
 	}
 
@@ -63,5 +57,10 @@
 		aspect-ratio: 1 / 1;
 		flex-shrink: 0;
 		flex-grow: 0;
+	}
+
+	:where([data-sonner-toast]) :where([data-description]) {
+		color: var(--copy-light) !important;
+		font-size: var(--step--1);
 	}
 </style>

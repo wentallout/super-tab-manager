@@ -28,6 +28,8 @@
 		padding-block: var(--space-xs);
 		padding-inline: var(--space-2xs);
 
+		border-radius: var(--border-radius-2);
+
 		& .domain__favicon {
 			aspect-ratio: 1;
 			height: 100%;

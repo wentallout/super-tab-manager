@@ -16,8 +16,8 @@
 
 {#key data.url}
 	<main
-		in:fly={{ x: -200, duration: 200, delay: 200 }}
-		out:fly={{ x: 200, duration: 200 }}
+		in:fly={{ x: -100, duration: 100, delay: 100 }}
+		out:fly={{ x: 100, duration: 100 }}
 		class="g-pad">
 		<slot />
 	</main>
@@ -27,6 +27,6 @@
 
 <style>
 	main {
-		min-height: 100vh;
+		min-height: 100dvh;
 	}
 </style>
