@@ -104,15 +104,4 @@
 		opacity: 1;
 		filter: brightness(1.2);
 	}
-
-	.tab__buttons {
-		max-height: 0;
-		transition: all 0.3s ease-in-out;
-		transition-delay: 250ms;
-	}
-
-	.tab__item:hover .tab__buttons {
-		max-height: 100px;
-		opacity: 1;
-	}
 </style>

@@ -25,11 +25,11 @@
 	</div>
 	{#if $memoryInfoStore}
 		<div class="memory__value" transition:fade>
-			{convertBytesToMb($memoryInfoStore.capacity) -
-				convertBytesToMb($memoryInfoStore.availableCapacity)} MB /
-			<strong>
-				{convertBytesToMb($memoryInfoStore.capacity)} MB
-			</strong>
+			{(
+				(($memoryInfoStore.capacity - $memoryInfoStore.availableCapacity) /
+					$memoryInfoStore.capacity) *
+				100
+			).toFixed(2)}%
 		</div>
 	{:else}
 		<div>
@@ -61,6 +61,8 @@
 		background-color: #00000070;
 		transition: background-color 0.3s linear;
 		pointer-events: none;
+
+		border-radius: var(--border-radius-1);
 
 		& .memory__title {
 			display: flex;

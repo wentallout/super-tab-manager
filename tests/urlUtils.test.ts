@@ -40,5 +40,3 @@ test.describe('formatTabDomain', () => {
 		}
 	});
 });
-
-//NOTE: Use Fixture if you share one setup between tests, need to find better examples.

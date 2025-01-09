@@ -11,7 +11,7 @@ export function togglePictureInPicture() {
 						target: { tabId: tab.id },
 						func: () => {
 							const media = document.querySelector('video, audio');
-							if (media && !media.paused) {
+							if (media && !(media as HTMLMediaElement).paused) {
 								if (document.pictureInPictureElement) {
 									document.exitPictureInPicture();
 									return { action: 'exited' };
@@ -25,11 +25,10 @@ export function togglePictureInPicture() {
 					});
 
 					if (result[0]?.result) {
-						// PiP was toggled, we can stop searching
 						return;
 					}
 				} catch (error) {
-					toast.error(`Failed to toggle Picture-in-Picture in tab ${tab.id}: ${error}`);
+					console.log(error);
 				}
 			}
 		}
