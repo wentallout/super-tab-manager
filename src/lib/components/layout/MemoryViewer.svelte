@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { memoryInfoStore } from '$stores/memoryInfoStore';
-	import { convertBytesToMb } from '$lib/utils/numberUtils';
+
 	import { Memory } from '$lib/icons';
 	import { onMount } from 'svelte';
-	import Loading from '$lib/icons/LoadingDots.svelte';
+	import LoadingDots from '$lib/icons/LoadingDots.svelte';
 	import { fade } from 'svelte/transition';
 
 	function getMemoryUsage(): void {
@@ -33,7 +33,7 @@
 		</div>
 	{:else}
 		<div>
-			<Loading />
+			<LoadingDots />
 		</div>
 	{/if}
 </div>
