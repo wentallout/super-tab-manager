@@ -386,3 +386,7 @@ video {
 [hidden]:where(:not([hidden='until-found'])) {
 	display: none;
 }
+
+li {
+	list-style: none !important;
+}

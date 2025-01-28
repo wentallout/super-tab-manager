@@ -142,7 +142,11 @@ export async function searchTabs(input: string) {
 
 	const lowerCaseInput = input.toLowerCase();
 	const allTabs = await chrome.tabs.query({});
-	const filteredTabs = allTabs.filter((tab) => tab.title?.toLowerCase().includes(lowerCaseInput));
+	const filteredTabs = allTabs.filter(
+		(tab) =>
+			tab.title?.toLowerCase().includes(lowerCaseInput) ||
+			tab.url?.toLowerCase().includes(lowerCaseInput)
+	);
 
 	tabListSearchResultStore.set(filteredTabs);
 }
