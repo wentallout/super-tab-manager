@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Close, Bookmark } from '$lib/icons';
 	import { closeTabById, bookmarkTabById } from '$stores/tabStore';
-	import { slide } from 'svelte/transition';
+
 	export let tab: chrome.tabs.Tab;
 </script>
 
-<div transition:slide class="tab__btn-group">
+<div class="tab__btn-group">
 	<button class="btn--small btn--bookmark" on:click={() => bookmarkTabById(tab.id)}>
 		<Bookmark height="24" width="24" />
 	</button>

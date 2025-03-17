@@ -104,7 +104,10 @@ export async function closeTabsByDomain(domain: string) {
 	domainsStore.update((domains) => domains.filter((d) => !d.title.includes(domain)));
 }
 
-export async function closeTabById(tabId: number) {
+export async function closeTabById(tabId: number | undefined) {
+	if (tabId === undefined) {
+		throw new Error('tabId is required');
+	}
 	const tab = await getTabInfo(tabId);
 	chrome.tabs.remove(tabId, async () => {
 		tabListStore.update((tabs) => tabs.filter((tab) => tab.id !== tabId));
@@ -115,7 +118,10 @@ export async function closeTabById(tabId: number) {
 	});
 }
 
-export async function bookmarkTabById(tabId: number) {
+export async function bookmarkTabById(tabId: number | undefined) {
+	if (tabId === undefined) {
+		throw new Error('tabId is required');
+	}
 	try {
 		const tabInfo = await getTabInfo(tabId);
 

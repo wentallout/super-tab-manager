@@ -5,8 +5,7 @@
 @import url(border-radius.css);
 @import url(components.css);
 
-:root 
-{
+:root {
 	--z-index-max: 9999;
 }
 
@@ -27,12 +26,10 @@ html {
 	scrollbar-gutter: stable;
 }
 
-
-
 button:disabled {
 	opacity: 0.1;
 	cursor: not-allowed;
-	filter:grayscale(1);
+	filter: grayscale(1);
 	pointer-events: none;
 }
 
@@ -53,12 +50,13 @@ button:disabled {
 	max-width: 65ch;
 }
 
-input[type='text'], input[type='search'] {
+input[type='text'],
+input[type='search'] {
 	background-color: transparent;
 	height: 40px;
 	font-size: var(--step-0);
 	padding: var(--space-s) var(--space-xs);
-	border:none;
+	border: none;
 	color: var(--copy);
 }
 

@@ -5,6 +5,7 @@
 	import { Globe, Tab } from '$lib/icons.ts';
 	import TabCurrent from '$components/tab/TabCurrent.svelte';
 	import { tabListStore } from '$stores/tabStore';
+	import MemoryViewer from './MemoryViewer.svelte';
 </script>
 
 <header>
@@ -17,6 +18,8 @@
 					href="/">
 					<Tab height="24" width="24" />
 					Tabs ({$tabListStore.length})
+
+					<MemoryViewer />
 				</a>
 			</div>
 			<div class="nav__item">

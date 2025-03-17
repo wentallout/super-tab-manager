@@ -9,10 +9,9 @@
 		"favicon",
 		"bookmarks",
 		"system.memory",
-		"scripting",
-		"<all_urls>"
+		"scripting"
 	],
-	"host_permissions": ["<all_urls>"],
+
 	"manifest_version": 3,
 	"action": {
 		"default_title": "Super Tab Manager - Open Menu",

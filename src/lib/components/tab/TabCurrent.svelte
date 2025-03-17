@@ -2,7 +2,6 @@
 	import { focusTabById, getTabInfo } from '$lib/utils/chromeUtils';
 	import { onMount } from 'svelte';
 
-	import MemoryViewer from '$components/layout/MemoryViewer.svelte';
 	import {
 		bookmarkTabById,
 		closeTabById,
@@ -24,7 +23,6 @@
 	});
 </script>
 
-<MemoryViewer />
 <section class="current">
 	{#if currentTabInfo}
 		<div class="tab__item">

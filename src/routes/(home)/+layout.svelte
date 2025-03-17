@@ -16,9 +16,9 @@
 
 {#key data.url}
 	<main
+		class="g-pad"
 		in:fly={{ x: -100, duration: 100, delay: 100 }}
-		out:fly={{ x: 100, duration: 100 }}
-		class="g-pad">
+		out:fly={{ x: 100, duration: 100 }}>
 		<slot />
 	</main>
 {/key}

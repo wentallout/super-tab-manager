@@ -8,11 +8,17 @@
 	import { fade } from 'svelte/transition';
 	export let tabList: chrome.tabs.Tab[];
 
+	import { flip } from 'svelte/animate';
+
 	$: tabList;
 </script>
 
 {#each tabList as tab (tab.id)}
-	<div class="tab__item" class:tab--pinned={tab.pinned} transition:fade={{ duration: 300 }}>
+	<div
+		class="tab__item"
+		class:tab--pinned={tab.pinned}
+		transition:fade={{ duration: 300 }}
+		animate:flip={{ duration: 320 }}>
 		<button class="tab__info" on:click={() => focusTabById(tab.id)}>
 			<img class="tab__favicon" alt="favicon" height="16px" src={tab.favIconUrl} width="16px" />
 			<p class="tab__select truncate">
