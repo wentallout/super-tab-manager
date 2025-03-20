@@ -10,6 +10,10 @@ A chrome extension that helps you clean and manage your messy tabs.
 <img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get uBlock Origin for Chromium">
 </a>
 
+## Explanation
+
+https://wentallout.io.vn/project/super-tab-manager
+
 ## Changelog
 
 - v1.0.7: add smooth page transition, make all buttons the same size, tab-related buttons only show up when that tab is hovered. Fix bugs where it does not detect certain NSFW url if it has subdomains. Example: `la.utube` instead of `utube`.
